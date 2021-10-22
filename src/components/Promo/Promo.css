@@ -1,1 +1,23 @@
-.Promo{}
+.promo {
+  padding: 82px 275px 122px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", "Times New Roman", Times, serif;
+  text-align: center;
+}
+
+.promo__logo {
+  position: relative;
+}
+
+.promo__title {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  color: #fff;
+  font-size: 50px;
+  line-height: 1.16;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
