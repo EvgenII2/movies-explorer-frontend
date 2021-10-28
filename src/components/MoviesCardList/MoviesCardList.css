@@ -1,1 +1,24 @@
-.MoviesCardList{}
+.movies-cardlist {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 32px;
+  column-gap: 20px;
+  padding: 70px 0;
+}
+
+.movies-cardlist__add-movies-button {
+  border: 0;
+  width: 320px;
+  height: 36px;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  font-family: "Inter", "Times New Roman", Times, serif;
+  font-size: 12px;
+  line-height: 1.21;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.movies-cardlist__add-movies-button:hover {
+  opacity: 0.75;
+}

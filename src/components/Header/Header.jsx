@@ -1,13 +1,18 @@
 import './Header.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../images/header-logo.svg';
 
 
 function Header({ isAuthorized }) {
+    const location = useLocation();
+    const isMovies = location.pathname === "/movies";
+    const isSavedMovies = location.pathname === "/saved-movies";
+
     return (
-        <div className="header">
+
+        <div className={isAuthorized ? "header header_background-color_transparent" : "header"}>
             <img src={logo} alt="логотип в шапке" className="header__logo" />
             <nav>
                 {!isAuthorized ? (
@@ -20,9 +25,23 @@ function Header({ isAuthorized }) {
                         </Link>
                     </>
                 ) : (
-                    <p>
-                        is not Authorized
-                    </p>
+                    <>
+                        <Link className={isMovies ?
+                            "header__link header__link_background-color_transparent" :
+                            "header__link header__link_background-color_transparent header__link_not-actived"}
+                            to="/movies">
+                            Фильмы
+                        </Link>
+                        <Link className={isSavedMovies ?
+                            "header__link header__link_background-color_transparent" :
+                            "header__link header__link_background-color_transparent header__link_not-actived"}
+                            to="/saved-movies">
+                            Сохранённые фильмы
+                        </Link>
+                        <Link className="header__link header__link_background-color_grey header__link_border-radius_16 " to="/profile">
+                            Аккаунт
+                        </Link>
+                    </>
                 )}
             </nav>
         </div >

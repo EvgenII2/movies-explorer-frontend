@@ -1,12 +1,9 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom";
-import AboutMe from '../AboutMe/AboutMe';
-import AboutProject from '../AboutProject/AboutProject';
 import Header from '../Header/Header';
-import NavTab from '../NavTab/NavTab';
-import Promo from '../Promo/Promo';
-import Techs from '../Techs/Techs';
+import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
+import Movies from '../Movies/Movies';
 
 import './App.css';
 
@@ -16,11 +13,13 @@ function App() {
       <Switch>
         <Route path="/movies">
           <Header isAuthorized />
-          movies
+          <Movies />
+          <Footer />
         </Route>
         <Route path="/saved-movies">
           <Header isAuthorized />
           saved-movies
+          <Footer />
         </Route>
         <Route path="/profile">
           <Header isAuthorized />
@@ -34,11 +33,7 @@ function App() {
         </Route>
         <Route path="/">
           <Header isAuthorized={false} />
-          <Promo />
-          <NavTab />
-          <AboutProject />
-          <Techs />
-          <AboutMe />
+          <Main />
           <Footer />
         </Route>
       </Switch>

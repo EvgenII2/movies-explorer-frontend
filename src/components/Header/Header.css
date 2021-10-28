@@ -4,6 +4,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #5c5c5c;
+}
+
+.header_background-color_transparent {
+  background-color: transparent;
 }
 
 .header__link {
@@ -17,16 +22,31 @@
   font-weight: 500;
 }
 
+.header__link_not-actived {
+  font-weight: 400;
+}
+
+.header__link_background-color_transparent {
+  background-color: transparent;
+  margin-left: 20px;
+  padding: 8px 0;
+  font-size: 14px;
+  line-height: 1.29;
+}
+
 .header__link_background-color_green {
   background-color: #2be080;
 }
 
 .header__link_background-color_grey {
   background-color: #f9f9f9;
+  margin-left: 50px;
+  font-size: 14px;
+  line-height: 1.14;
 }
 
-.header__link_border-radius_50 {
-  border-radius: 50%;
+.header__link_border-radius_16 {
+  border-radius: 16px;
 }
 
 .header__link_color_white {
