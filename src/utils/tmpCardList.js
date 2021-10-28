@@ -11,6 +11,7 @@ const cardList = [
         duration: "1ч42м",
         id: "1",
         isChecked: false,
+        isShortMovie: false,
     },
     {
         picture: picture2,
@@ -18,13 +19,15 @@ const cardList = [
         duration: "1ч42м",
         id: "3",
         isChecked: true,
+        isShortMovie: true,
     },
     {
         picture: picture3,
         title: "33 слова о дизайне",
         duration: "1ч42м",
         id: "4",
-        isChecked: false,
+        isChecked: false, 
+        isShortMovie: false,
     },
     {
         picture: picture4,
@@ -32,6 +35,7 @@ const cardList = [
         duration: "1ч42м",
         id: "5",
         isChecked: false,
+        isShortMovie: false,
     },
     {
         picture: picture5,
@@ -39,6 +43,7 @@ const cardList = [
         duration: "1ч42м",
         id: "6",
         isChecked: false,
+        isShortMovie: true,
     },
     {
         picture: picture1,
@@ -46,6 +51,7 @@ const cardList = [
         duration: "1ч42м",
         id: "7",
         isChecked: true,
+        isShortMovie: false,
     },
     {
         picture: picture2,
@@ -53,6 +59,7 @@ const cardList = [
         duration: "1ч42м",
         id: "8",
         isChecked: true,
+        isShortMovie: false,
     },
     {
         picture: picture3,
@@ -60,6 +67,7 @@ const cardList = [
         duration: "1ч42м",
         id: "9",
         isChecked: false,
+        isShortMovie: true,
     },
     {
         picture: picture4,
@@ -67,6 +75,7 @@ const cardList = [
         duration: "1ч42м",
         id: "10",
         isChecked: false,
+        isShortMovie: true,
     },
     {
         picture: picture5,
@@ -74,6 +83,7 @@ const cardList = [
         duration: "1ч42м",
         id: "11",
         isChecked: true,
+        isShortMovie: false,
     },
     {
         picture: picture1,
@@ -81,6 +91,7 @@ const cardList = [
         duration: "1ч42м",
         id: "12",
         isChecked: false,
+        isShortMovie: false,
     },
     {
         picture: picture2,
@@ -88,6 +99,7 @@ const cardList = [
         duration: "1ч42м",
         id: "13",
         isChecked: true,
+        isShortMovie: false,
     },
     {
         picture: picture3,
@@ -95,6 +107,7 @@ const cardList = [
         duration: "1ч42м",
         id: "14",
         isChecked: false,
+        isShortMovie: false,
     },
     {
         picture: picture4,
@@ -102,6 +115,7 @@ const cardList = [
         duration: "1ч42м",
         id: "15",
         isChecked: false,
+        isShortMovie: true,
     },
     {
         picture: picture5,
@@ -109,6 +123,7 @@ const cardList = [
         duration: "1ч42м",
         id: "16",
         isChecked: false,
+        isShortMovie: false,
     },
     {
         picture: picture1,
@@ -116,6 +131,7 @@ const cardList = [
         duration: "1ч42м",
         id: "17",
         isChecked: true,
+        isShortMovie: false,
     },
 ];
 
