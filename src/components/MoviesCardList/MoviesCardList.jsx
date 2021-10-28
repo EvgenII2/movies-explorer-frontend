@@ -25,7 +25,15 @@ function MoviesCardList({ cardList }) {
   );
 }
 MoviesCardList.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  cardList: PropTypes.array.isRequired,
+  cardList: PropTypes.arrayOf(
+    PropTypes.shape({
+      picture: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      duration: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+      isChecked: PropTypes.bool.isRequired,
+      isShortMovie: PropTypes.bool.isRequired,
+    })
+  ).isRequired,
 };
 export default MoviesCardList;
