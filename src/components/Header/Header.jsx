@@ -13,7 +13,9 @@ function Header({ isAuthorized }) {
     return (
 
         <div className={isAuthorized ? "header header_background-color_transparent" : "header"}>
+            <Link to="/">
             <img src={logo} alt="логотип в шапке" className="header__logo" />
+            </Link>
             <nav>
                 {!isAuthorized ? (
                     <>

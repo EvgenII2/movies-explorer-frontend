@@ -1,0 +1,30 @@
+.page-not-found {
+  font-family: "Inter", "Times New Roman", Times, serif;
+  padding: 246px 0;
+  text-align: center;
+  line-height: 1.21;
+  font-weight: 400;
+}
+
+.page-not-found__title {
+  font-size: 140px;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.page-not-found__subtitle {
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 184px;
+}
+
+.page-not-found__link {
+  font-size: 14px;
+  color: #2be080;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}

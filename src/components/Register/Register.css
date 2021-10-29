@@ -1,1 +1,8 @@
-.Register{}
+.register {
+  font-family: "Inter", "Times New Roman", Times, serif;
+  padding: 70px 442px;
+}
+
+.form-register__button {
+  margin-top: 165px;
+}

@@ -1,2 +1,67 @@
-.Login {
+.login {
+  font-family: "Inter", "Times New Roman", Times, serif;
+  padding: 70px 442px;
+}
+
+.form__title {
+  font-size: 24px;
+  line-height: 1.21;
+  font-weight: 500;
+  padding: 0;
+  margin: 40px 0;
+}
+
+.form__label {
+  font-size: 10px;
+  line-height: 1.21;
+  font-weight: 500;
+  padding: 0;
+  margin: 0 0 5px;
+  color: #a0a0a0;
+}
+
+.form__label:last-of-type {
+  margin-top: 24px;
+}
+
+.form__input {
+  border: 0;
+  outline: 0;
+  background: none;
+  font-size: 14px;
+  line-height: 1.21;
+  font-weight: 400;
+  width: 100%;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 0 0 10px;
+  margin-bottom: 24px;
+}
+
+.form__input:last-of-type {
+  margin-bottom: 0px;
+}
+
+.form__button {
+  border: 0;
+  background-color: #2be080;
+  border-radius: 3px;
+  width: 100%;
+  padding: 13px 0 15px;
+  margin: 221px 0 16px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.21;
+  font-weight: 500;
+}
+
+.form__text {
+  font-size: 14px;
+  line-height: 1.21;
+  font-weight: 400;
+  text-align: center;
+}
+
+.form__link {
+  text-decoration: none;
+  color: #2be080;
 }
