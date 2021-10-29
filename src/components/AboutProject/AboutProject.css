@@ -1,6 +1,6 @@
 .about-project {
   font-family: "Inter", "Times New Roman", Times, serif;
-  padding: 110px 70px;
+  padding: 110px 70px 111px;
   background-color: #fff;
 }
 
@@ -10,7 +10,7 @@
   font-size: 22px;
   line-height: 1.21;
   font-weight: 400;
-  letter-spacing: 0.88px;
+  letter-spacing: -0.88px;
   margin-bottom: 23px;
 }
 
@@ -19,7 +19,8 @@
   flex-direction: row;
   border-top: 1px solid #000;
   padding-top: 70px;
-  padding-bottom: 110px;
+  padding-bottom: 111px;
+  column-gap: 51px;
 }
 
 .about-project__desc-article-title {
@@ -28,7 +29,7 @@
   font-size: 20px;
   line-height: 1.21;
   font-weight: 400;
-  letter-spacing: 0.8px;
+  letter-spacing: -0.8px;
 }
 
 .about-project__desc-article-paragraph {
@@ -52,14 +53,14 @@
   width: 20%;
 }
 .about-project__plane-weeks {
-  padding: 9px;
+  padding: 10px;
   font-size: 14px;
   line-height: 1.21;
   font-weight: 400;
 }
 .about-project__plane-techs {
   margin: 0;
-  padding: 14px 0;
+  padding: 14px 0 0;
   background-color: #fff;
   color: #a0a0a0;
   font-size: 14px;

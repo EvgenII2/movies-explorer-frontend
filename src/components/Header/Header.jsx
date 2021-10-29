@@ -16,7 +16,7 @@ function Header({ isAuthorized }) {
             <Link to="/">
             <img src={logo} alt="логотип в шапке" className="header__logo" />
             </Link>
-            <nav>
+            <nav className="header__link-container">
                 {!isAuthorized ? (
                     <>
                         <Link className="header__link header__link_color_white" to="/sign-up">

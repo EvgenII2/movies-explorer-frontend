@@ -10,7 +10,7 @@
   font-size: 22px;
   line-height: 1.21;
   font-weight: 400;
-  letter-spacing: 0.88px;
+  letter-spacing: -0.88px;
   margin-bottom: 23px;
 }
 .techs__desc {
@@ -28,17 +28,18 @@
   font-size: 50px;
   line-height: 1.16;
   font-weight: 400;
-  letter-spacing: 2px;
+  letter-spacing: -2px;
   margin-bottom: 26px;
 }
 
 .techs__desc-paragraph {
+  text-align: center;
   margin: 0 0 100px;
-  padding: 0;
+  padding: 0 340px;
   font-size: 14px;
   line-height: 1.43;
   font-weight: 400;
-  letter-spacing: 0.56px;
+  letter-spacing: -0.56px;
 }
 
 .techs__names {
@@ -46,6 +47,7 @@
   flex-direction: row;
   column-gap: 10px;
   margin: 0;
+  padding: 0;
 }
 
 .techs__name {
@@ -60,5 +62,5 @@
   font-size: 14px;
   line-height: 1.21;
   font-weight: 400;
-  letter-spacing: 0.56px;
+  letter-spacing: -0.56px;
 }

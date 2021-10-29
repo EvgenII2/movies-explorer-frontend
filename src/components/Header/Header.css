@@ -11,6 +11,10 @@
   background-color: transparent;
 }
 
+.header__link-container {
+  padding-bottom: 8px;
+}
+
 .header__link {
   padding: 8px 20px;
   text-decoration: none;

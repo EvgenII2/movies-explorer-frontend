@@ -1,5 +1,5 @@
 .promo {
-  padding: 82px 275px 122px;
+  padding: 80px 275px 122px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,9 +16,10 @@
   position: absolute;
   left: 50%;
   transform: translate(-50%);
+  text-align: center;
   color: #fff;
   font-size: 50px;
   line-height: 1.16;
   font-weight: 400;
-  letter-spacing: 2px;
+  letter-spacing: -1.8px;
 }
