@@ -11,6 +11,7 @@ function SavedMovies() {
     const showShortMoviesHandler = () => {
         setIsShowedShortMovies(!isShowedShortMovies);
     };
+
     React.useEffect(() => {
         if (isShowedShortMovies) {
             setTmpCardList(cardList.filter(movie => movie.isChecked && movie.isShortMovie));

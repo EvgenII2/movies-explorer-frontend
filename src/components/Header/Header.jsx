@@ -14,38 +14,37 @@ function Header({ isAuthorized }) {
 
         <div className={isAuthorized ? "header header_background-color_transparent" : "header"}>
             <Link to="/">
-            <img src={logo} alt="логотип в шапке" className="header__logo" />
+                <img src={logo} alt="логотип в шапке" className="header__logo" />
             </Link>
-            <nav className="header__link-container">
-                {!isAuthorized ? (
-                    <>
-                        <Link className="header__link header__link_color_white" to="/sign-up">
-                            Регистрация
-                        </Link>
-                        <Link className="header__link header__link_background-color_green" to="/sign-in">
-                            Войти
-                        </Link>
-                    </>
-                ) : (
-                    <>
-                        <Link className={isMovies ?
-                            "header__link header__link_background-color_transparent" :
-                            "header__link header__link_background-color_transparent header__link_not-actived"}
-                            to="/movies">
-                            Фильмы
-                        </Link>
-                        <Link className={isSavedMovies ?
-                            "header__link header__link_background-color_transparent" :
-                            "header__link header__link_background-color_transparent header__link_not-actived"}
-                            to="/saved-movies">
-                            Сохранённые фильмы
-                        </Link>
-                        <Link className="header__link header__link_background-color_grey header__link_border-radius_16 " to="/profile">
-                            Аккаунт
-                        </Link>
-                    </>
-                )}
-            </nav>
+            {!isAuthorized ? (
+                <nav className="header__link-container">
+                    <Link className="header__link header__link_color_white" to="/sign-up">
+                        Регистрация
+                    </Link>
+                    <Link className="header__link header__link_background-color_green" to="/sign-in">
+                        Войти
+                    </Link>
+                </nav>
+            ) : (
+                <nav className="header__link-container_is-authorized">
+                    <Link className={isMovies ?
+                        "header__link header__link_is-authorized" :
+                        "header__link header__link_is-authorized header__link_not-actived"}
+                        to="/movies">
+                        Фильмы
+                    </Link>
+                    <Link className={isSavedMovies ?
+                        "header__link header__link_is-authorized" :
+                        "header__link header__link_is-authorized header__link_not-actived"}
+                        to="/saved-movies">
+                        Сохранённые фильмы
+                    </Link>
+                    <Link className="header__link header__link-accaunt" to="/profile">
+                        Аккаунт
+                    </Link>
+                </nav>
+            )}
+
         </div >
     )
 }

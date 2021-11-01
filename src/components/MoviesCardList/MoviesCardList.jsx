@@ -1,9 +1,12 @@
 import "./MoviesCardList.css";
 import React from "react";
+import { useLocation } from 'react-router-dom';
 import PropTypes from "prop-types";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList({ cardList }) {
+  const location = useLocation();
+  const isMovies = location.pathname === "/movies";
   return (
     <>
       <div className="movies-cardlist">
@@ -18,9 +21,12 @@ function MoviesCardList({ cardList }) {
             />
           ))}
       </div>
-      <button type="button" className="movies-cardlist__add-movies-button">
-        Ещё
-      </button>
+      {isMovies && (
+        <button type="button" className="movies-cardlist__add-movies-button">
+          Ещё
+        </button>)
+      }
+
     </>
   );
 }
