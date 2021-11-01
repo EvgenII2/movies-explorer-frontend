@@ -23,8 +23,6 @@
   column-gap: 270px;
 }
 
-.about-me__text {
-}
 .about-me__article-title {
   margin: 0 0 19px;
   padding: 0;
@@ -65,10 +63,10 @@
 }
 .about-me__photo {
   width: 270px;
+  height: 327px;
   border-radius: 10px;
 }
-.about-me__portfolio {
-}
+
 .about-me__portfolio-title {
   font-size: 18px;
   line-height: 1.11;
@@ -106,4 +104,39 @@
 }
 .about-me__portfolio-link:hover {
   opacity: 0.6;
+}
+
+@media (max-width: 1000px) {
+  .about-me {
+    padding: 91px 50px 72px;
+  }
+  .about-me__article {
+    margin-bottom: 89px;
+    column-gap: 49px;
+  }
+  .about-me__article-title {
+    margin: 0 0 16px;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -1.6px;
+  }
+  .about-me__article-subtitle {
+    margin: 0 0 20px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .about-me__article-paragraph {
+    margin: 0 0 88px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .about-me__photo {
+    width: 255px;
+    height: 307px;
+  }
+  .about-me__portfolio-link {
+    font-size: 28px;
+    line-height: 1.79;
+    letter-spacing: -1.2px;
+  }
 }

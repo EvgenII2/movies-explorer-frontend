@@ -64,3 +64,32 @@
   font-weight: 400;
   letter-spacing: -0.56px;
 }
+
+@media (max-width: 1000px) {
+  .techs {
+    padding: 92px 50px 90px;
+  }
+  .techs__desc {
+    padding-top: 80px;
+  }
+  .techs__desc-title {
+    margin-bottom: 23px;
+  }
+  .techs__desc-paragraph {
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: -0.48px;
+    padding: 0 134px;
+    margin-bottom: 82px;
+  }
+  .techs__name {
+    width: 84px;
+    height: 57px;
+    font-size: 12px;
+    line-height: 1.21;
+    letter-spacing: -0.48px;
+  }
+  .techs__names {
+    column-gap: 10px;
+  }
+}

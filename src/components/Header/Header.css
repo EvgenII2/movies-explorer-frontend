@@ -60,3 +60,10 @@
 .header__link_color_white {
   color: #fff;
 }
+
+@media (max-width: 1000px) {
+  .header {
+    padding: 18px 30px;    
+  }
+  
+}

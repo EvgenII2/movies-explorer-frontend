@@ -42,3 +42,9 @@
   list-style: none;
   cursor: pointer;
 }
+
+@media (max-width: 1200px) {
+  .footer {
+    padding: 79px 22px 0 37px;
+  }
+}

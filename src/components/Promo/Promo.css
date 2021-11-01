@@ -23,3 +23,9 @@
   font-weight: 400;
   letter-spacing: -1.8px;
 }
+
+@media (max-width: 769px) {
+  .promo {
+    padding: 221px 30px 241px;
+  }
+}
