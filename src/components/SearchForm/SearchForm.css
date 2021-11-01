@@ -105,3 +105,12 @@
   padding: 0;
   margin: 0;
 }
+
+@media (max-width: 1000px) {
+  .search-form-container {
+    padding: 78px 10px 10px;
+  }
+  .search-form {
+    margin-bottom: 39px;
+  }
+}

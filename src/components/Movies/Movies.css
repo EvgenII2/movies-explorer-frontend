@@ -5,3 +5,9 @@
   align-items: center;
   padding: 0 70px 91px;
 }
+
+@media (max-width: 1000px) {
+  .movies {
+    padding: 0 30px 80px;
+  }
+}
