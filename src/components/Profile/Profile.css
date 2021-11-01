@@ -1,6 +1,6 @@
 .profile {
   font-family: "Inter", "Times New Roman", Times, serif;
-  padding: 74px 435px 70px;
+  padding: 71px 435px 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,7 +12,7 @@
   line-height: 1.21;
   font-weight: 500;
   padding: 0;
-  margin: 0 0 123px;
+  margin: 0 0 113px;
 }
 
 .profile__name-container {
@@ -22,13 +22,13 @@
   align-items: center;
   width: 100%;
   border-bottom: 1px solid #e8e8e8;
-  padding-bottom: 16px;
+  padding-bottom: 5px;
 }
 
 .profile__name-container:last-of-type {
   border-bottom: 0;
-  padding-top: 17px;
-  margin-bottom: 220px;
+  padding-top: 7px;
+  margin-bottom: 205px;
 }
 
 .profile__name-label {

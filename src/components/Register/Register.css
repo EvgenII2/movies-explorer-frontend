@@ -4,5 +4,14 @@
 }
 
 .form-register__button {
-  margin-top: 165px;
+  border: 0;
+  background-color: #2be080;
+  border-radius: 3px;
+  width: 100%;
+  padding: 13px 0 15px;
+  margin: 152px 0 3px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.21;
+  font-weight: 500;
 }

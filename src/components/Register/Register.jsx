@@ -58,7 +58,7 @@ function Register() {
                 />
                 <button
                     type="submit"
-                    className="form__button form-register__button"
+                    className="form-register__button"
                     onClick={(e) => {
                         e.preventDefault();
                         window.location.assign('http://localhost:3000/sign-in/');
