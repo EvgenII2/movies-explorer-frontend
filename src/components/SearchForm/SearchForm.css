@@ -80,6 +80,7 @@
   transition: 0.4s;
   border-radius: 20px;
   box-shadow: 0 4px 4px rgba(50, 50, 71, 0.06);
+  z-index: -1;
 }
 
 .checkbox__slider:before {
