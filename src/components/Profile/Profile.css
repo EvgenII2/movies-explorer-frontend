@@ -67,3 +67,15 @@
   margin-bottom: 0;
   font-weight: 500;
 }
+
+@media (max-width: 1000px) {
+  .profile {
+    padding: 233px 179px 269px;
+  }
+  .profile__title {
+    margin-bottom: 86px;
+  }
+  .profile__name-container:last-of-type {
+    margin-bottom: 196px;
+  }
+}

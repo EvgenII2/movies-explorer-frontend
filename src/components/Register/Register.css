@@ -9,9 +9,15 @@
   border-radius: 3px;
   width: 100%;
   padding: 13px 0 15px;
-  margin: 152px 0 3px;
+  margin: 153px 0 3px;
   color: #fff;
   font-size: 14px;
   line-height: 1.21;
   font-weight: 500;
+}
+
+@media (max-width: 1000px) {
+  .register {
+    padding: 231px 186px;
+  }
 }

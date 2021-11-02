@@ -28,3 +28,9 @@
   padding: 0;
   margin: 0;
 }
+
+@media (max-width: 1000px) {
+  .page-not-found {
+    padding: 408px 184px;
+  }
+}
