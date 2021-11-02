@@ -98,3 +98,15 @@
     height: 44px;
   }
 }
+
+@media (max-width: 600px) {
+  .header {
+    padding: 15px 14px;
+  }
+  .header__link {
+    font-size: 10px;
+    line-height: 1.6;
+    padding: 6px 12px;
+    margin-left: 2px;
+  }
+}

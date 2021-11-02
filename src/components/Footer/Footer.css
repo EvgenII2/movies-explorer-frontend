@@ -49,3 +49,30 @@
     background-color: #fff;
   }
 }
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 79px 10px 10px;
+    background-color: #fff;
+  }
+  .footer__title {
+    margin: 0 0 21px;
+    padding: 0;
+    font-size: 12px;
+    line-height: 1.21;
+    font-weight: 400;
+    color: #a0a0a0;
+  }
+  .footer__links {
+    font-size: 12px;
+    flex-direction: column;
+    row-gap: 13px;
+  }
+  .footer__links-container {
+    padding-top: 31px;
+    flex-direction: column-reverse;
+  }
+  .footer__copyright {
+    margin-top: 30px;
+  }
+}

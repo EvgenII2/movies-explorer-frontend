@@ -26,3 +26,12 @@
   margin: 0;
   border-bottom: 1px solid #000;
 }
+
+@media (max-width: 600px) {
+  .nav-tab {
+    padding: 26px 0;
+    font-size: 11px;
+    line-height: 1.4545;
+    column-gap: 24px;
+  }
+}

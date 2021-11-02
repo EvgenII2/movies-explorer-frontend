@@ -27,7 +27,7 @@ function AboutProject() {
             </div>
             <div className="about-project__plane">
                 <div className="about-project__plane-section">
-                    <div className="about-project__plane-weeks">
+                    <div className="about-project__plane-weeks about-project__plane-weeks_color_green">
                         1 неделя
                     </div>
                     <p className="about-project__plane-techs">

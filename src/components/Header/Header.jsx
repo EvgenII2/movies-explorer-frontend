@@ -12,15 +12,23 @@ function Header({ isAuthorized }) {
     const isMovies = location.pathname === "/movies";
     const isSavedMovies = location.pathname === "/saved-movies";
     const isMain = location.pathname === "/";
+
     const [isMenuOpened, setIsMenuOpened] = useState(false);
+
     const clickHandler = () => {
         setIsMenuOpened(!isMenuOpened)
     };
 
     return (
-        <div className={isAuthorized ? "header header_background-color_transparent" : "header"}>
+        <div className={isAuthorized ?
+            "header header_background-color_transparent" :
+            "header"}>
             <Link to="/">
-                <img src={logo} alt="логотип в шапке" className="header__logo" />
+                <img
+                    src={logo}
+                    alt="логотип в шапке"
+                    className="header__logo"
+                />
             </Link>
             {!isAuthorized ? (
                 <nav className="header__link-container">
@@ -33,12 +41,24 @@ function Header({ isAuthorized }) {
                 </nav>
             ) : (
                 <>
-                    <button type="button" className="header__button-menu" onClick={clickHandler}>
-                        <img src={burgerIcon} alt="иконка меню" className="header__burger-icon" />
+                    <button
+                        type="button"
+                        className="header__button-menu"
+                        onClick={clickHandler}>
+                        <img
+                            src={burgerIcon}
+                            alt="иконка меню"
+                            className="header__burger-icon"
+                        />
                     </button>
-                    {isMenuOpened ? <MenuMobile clickHandler={clickHandler} isMain={isMain} isMovies={isMovies} isSavedMovies={isSavedMovies} /> :
-                        (<nav className="header__link-container_is-authorized"
-                        >
+                    {isMenuOpened ?
+                        <MenuMobile
+                            clickHandler={clickHandler}
+                            isMain={isMain}
+                            isMovies={isMovies}
+                            isSavedMovies={isSavedMovies}
+                        /> :
+                        (<nav className="header__link-container_is-authorized">
                             <Link className={isMovies ?
                                 "header__link header__link_is-authorized" :
                                 "header__link header__link_is-authorized header__link_not-actived"}
@@ -62,6 +82,7 @@ function Header({ isAuthorized }) {
         </div >
     )
 }
+
 Header.propTypes = {
     isAuthorized: PropTypes.bool.isRequired
 }
