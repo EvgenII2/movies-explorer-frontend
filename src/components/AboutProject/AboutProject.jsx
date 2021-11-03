@@ -38,7 +38,6 @@ function AboutProject() {
                     <div className="about-project__plane-weeks">
                         4 недели
                     </div>
-
                     <p className="about-project__plane-techs">
                         Front-end
                     </p>

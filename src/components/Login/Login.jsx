@@ -7,11 +7,19 @@ function Login() {
     return (
         <div className="login">
             <Link to="/">
-                <img src={logo} alt="логотип в шапке" className="login__logo" />
+                <img
+                    src={logo}
+                    alt="логотип в шапке"
+                    className="login__logo"
+                />
             </Link>
             <form name="loginForm" className="form">
-                <h2 className="form__title">Рады видеть!</h2>
-                <p className="form__label">E-mail</p>
+                <h2 className="form__title">
+                    Рады видеть!
+                </h2>
+                <p className="form__label">
+                    E-mail
+                </p>
                 <input
                     type="email"
                     name="emailFromFormLogin"
@@ -26,7 +34,9 @@ function Login() {
                     className="form__error"
                     id="emailFromFormLogin-error"
                 />
-                <p className="form__label">Пароль</p>
+                <p className="form__label">
+                    Пароль
+                </p>
                 <input
                     type="password"
                     name="passwordFromFormLogin"
@@ -53,7 +63,10 @@ function Login() {
                 </button>
                 <p className="form__text">
                     Ещё не зарегистрированы?&nbsp;&nbsp;
-                    <Link to="/sign-up" className="form__link">
+                    <Link
+                        to="/sign-up"
+                        className="form__link"
+                    >
                         Регистрация
                     </Link>
                 </p>

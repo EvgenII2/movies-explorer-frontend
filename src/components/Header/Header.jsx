@@ -32,10 +32,16 @@ function Header({ isAuthorized }) {
             </Link>
             {!isAuthorized ? (
                 <nav className="header__link-container">
-                    <Link className="header__link header__link_color_white" to="/sign-up">
+                    <Link
+                        className="header__link header__link_color_white"
+                        to="/sign-up"
+                    >
                         Регистрация
                     </Link>
-                    <Link className="header__link header__link_background-color_green" to="/sign-in">
+                    <Link
+                        className="header__link header__link_background-color_green"
+                        to="/sign-in"
+                    >
                         Войти
                     </Link>
                 </nav>
@@ -59,26 +65,34 @@ function Header({ isAuthorized }) {
                             isSavedMovies={isSavedMovies}
                         /> :
                         (<nav className="header__link-container_is-authorized">
-                            <Link className={isMovies ?
-                                "header__link header__link_is-authorized" :
-                                "header__link header__link_is-authorized header__link_not-actived"}
+                            <Link
+                                className={
+                                    isMovies ?
+                                        "header__link header__link_is-authorized" :
+                                        "header__link header__link_is-authorized header__link_not-actived"
+                                }
                                 to="/movies">
                                 Фильмы
                             </Link>
-                            <Link className={isSavedMovies ?
-                                "header__link header__link_is-authorized" :
-                                "header__link header__link_is-authorized header__link_not-actived"}
+                            <Link
+                                className={
+                                    isSavedMovies ?
+                                        "header__link header__link_is-authorized" :
+                                        "header__link header__link_is-authorized header__link_not-actived"
+                                }
                                 to="/saved-movies">
                                 Сохранённые фильмы
                             </Link>
-                            <Link className="header__link header__link-accaunt" to="/profile">
+                            <Link
+                                className="header__link header__link-accaunt"
+                                to="/profile"
+                            >
                                 Аккаунт
                             </Link>
-                        </nav>)}
-
+                        </nav>)
+                    }
                 </>
             )}
-
         </div >
     )
 }

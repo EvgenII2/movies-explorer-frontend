@@ -1,140 +1,138 @@
 .about-project {
-  font-family: "Inter", "Times New Roman", Times, serif;
-  padding: 110px 70px 111px;
-  background-color: #fff;
+    font-family: 'Inter', 'Times New Roman', Times, serif;
+    padding: 110px 70px 111px;
+    background-color: #fff;
 }
-
 .about-project__title {
-  margin: 0;
-  padding: 0;
-  font-size: 22px;
-  line-height: 1.21;
-  font-weight: 400;
-  letter-spacing: -0.88px;
-  margin-bottom: 23px;
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+    line-height: 1.21;
+    font-weight: 400;
+    letter-spacing: -0.88px;
+    margin-bottom: 23px;
 }
-
 .about-project__desc {
-  display: flex;
-  flex-direction: row;
-  border-top: 1px solid #000;
-  padding-top: 70px;
-  padding-bottom: 111px;
-  column-gap: 51px;
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid #000;
+    padding-top: 70px;
+    padding-bottom: 111px;
+    column-gap: 51px;
 }
-
 .about-project__desc-article-title {
-  margin: 0 0 26px 0;
-  padding: 0;
-  font-size: 20px;
-  line-height: 1.21;
-  font-weight: 400;
-  letter-spacing: -0.8px;
+    margin: 0 0 26px 0;
+    padding: 0;
+    font-size: 20px;
+    line-height: 1.21;
+    font-weight: 400;
+    letter-spacing: -0.8px;
 }
-
 .about-project__desc-article-paragraph {
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-  line-height: 1.43;
-  font-weight: 400;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.43;
+    font-weight: 400;
 }
 .about-project__plane {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
 }
 .about-project__plane-section {
-  width: 80%;
+    width: 80%;
 }
 .about-project__plane-section:first-of-type {
-  width: 20%;
+    width: 20%;
 }
 .about-project__plane-weeks {
-  background-color: #f2f2f2;
-  padding: 10px;
-  font-size: 14px;
-  line-height: 1.21;
-  font-weight: 400;
+    background-color: #f2f2f2;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.21;
+    font-weight: 400;
 }
 .about-project__plane-weeks_color_green {
-  background-color: #2be080;
+    background-color: #2be080;
 }
 .about-project__plane-techs {
-  margin: 0;
-  padding: 14px 0 0;
-  background-color: #fff;
-  color: #a0a0a0;
-  font-size: 14px;
-  line-height: 1.21;
-  font-weight: 400;
-}
-@media (max-width: 1000px) {
-  .about-project {
-    padding: 90px 50px;
-  }
-  .about-project__desc {
-    padding-top: 70px;
-    padding-bottom: 93px;
-    column-gap: 38px;
-  }
-  .about-project__desc-article-paragraph {
-    font-size: 12px;
-    line-height: 1.5;
-  }
-  .about-project__desc-article-title {
-    margin-bottom: 22px;
-  }
-  .about-project__plane-section {
-    width: 79%;
-  }
-  .about-project__plane-section:first-of-type {
-    width: 21%;
-  }
-}
-@media (max-width: 600px) {
-  .about-project {
-    padding: 70px 18px;
-  }
-  .about-project__title {
-    font-size: 18px;
+    margin: 0;
+    padding: 14px 0 0;
+    background-color: #fff;
+    color: #a0a0a0;
+    font-size: 14px;
     line-height: 1.21;
-    letter-spacing: -0.72px;
-    margin-bottom: 28px;
-  }
-  .about-project__desc {
-    padding-top: 60px;
-  }
-  .about-project__desc {
-    flex-direction: column;
-    row-gap: 56px;
-    padding-bottom: 63px;
-  }
-  .about-project__desc-article-title {
-    font-size: 18px;
-    line-height: 1.3;
-    letter-spacing: -0.72px;
-    margin-bottom: 16px;
-  }
-  .about-project__desc-article-paragraph {
-    font-size: 11px;
-    line-height: 1.4545;
-  }
-  .about-project__plane-section {
-    width: 68%;
-  }
-  .about-project__plane-section:first-of-type {
-    width: 37%;
-  }
-  .about-project__plane-weeks {
-    font-size: 11px;
-    padding: 11px 10px;
-  }
-  .about-project__plane-techs {
-    font-size: 11px;
-    line-height: 1.16;
-  }
-  .about-project__plane-techs {
-    padding: 9px 0 0;
-  }
+    font-weight: 400;
+}
+
+@media (max-width: 1000px) {
+    .about-project {
+        padding: 90px 50px;
+    }
+    .about-project__desc {
+        padding-top: 70px;
+        padding-bottom: 93px;
+        column-gap: 38px;
+    }
+    .about-project__desc-article-paragraph {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    .about-project__desc-article-title {
+        margin-bottom: 22px;
+    }
+    .about-project__plane-section {
+        width: 79%;
+    }
+    .about-project__plane-section:first-of-type {
+        width: 21%;
+    }
+}
+
+@media (max-width: 600px) {
+    .about-project {
+        padding: 70px 18px;
+    }
+    .about-project__title {
+        font-size: 18px;
+        line-height: 1.21;
+        letter-spacing: -0.72px;
+        margin-bottom: 28px;
+    }
+    .about-project__desc {
+        padding-top: 60px;
+    }
+    .about-project__desc {
+        flex-direction: column;
+        row-gap: 56px;
+        padding-bottom: 63px;
+    }
+    .about-project__desc-article-title {
+        font-size: 18px;
+        line-height: 1.3;
+        letter-spacing: -0.72px;
+        margin-bottom: 16px;
+    }
+    .about-project__desc-article-paragraph {
+        font-size: 11px;
+        line-height: 1.4545;
+    }
+    .about-project__plane-section {
+        width: 68%;
+    }
+    .about-project__plane-section:first-of-type {
+        width: 37%;
+    }
+    .about-project__plane-weeks {
+        font-size: 11px;
+        padding: 11px 10px;
+    }
+    .about-project__plane-techs {
+        font-size: 11px;
+        line-height: 1.16;
+    }
+    .about-project__plane-techs {
+        padding: 9px 0 0;
+    }
 }

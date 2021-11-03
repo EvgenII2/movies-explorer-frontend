@@ -1,131 +1,126 @@
 .techs {
-  font-family: "Inter", "Times New Roman", Times, serif;
-  background-color: #f5f5f5;
-  padding: 100px 70px;
+    font-family: 'Inter', 'Times New Roman', Times, serif;
+    background-color: #f5f5f5;
+    padding: 100px 70px;
 }
-
 .techs__title {
-  margin: 0;
-  padding: 0;
-  font-size: 22px;
-  line-height: 1.21;
-  font-weight: 400;
-  letter-spacing: -0.88px;
-  margin-bottom: 23px;
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+    line-height: 1.21;
+    font-weight: 400;
+    letter-spacing: -0.88px;
+    margin-bottom: 23px;
 }
 .techs__desc {
-  border-top: 1px solid #000;
-  padding-top: 90px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    border-top: 1px solid #000;
+    padding-top: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
 .techs__desc-title {
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  font-size: 50px;
-  line-height: 1.16;
-  font-weight: 400;
-  letter-spacing: -2px;
-  margin-bottom: 26px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-size: 50px;
+    line-height: 1.16;
+    font-weight: 400;
+    letter-spacing: -2px;
+    margin-bottom: 26px;
 }
-
 .techs__desc-paragraph {
-  text-align: center;
-  margin: 0 0 100px;
-  padding: 0 340px;
-  font-size: 14px;
-  line-height: 1.43;
-  font-weight: 400;
-  letter-spacing: -0.56px;
+    text-align: center;
+    margin: 0 0 100px;
+    padding: 0 340px;
+    font-size: 14px;
+    line-height: 1.43;
+    font-weight: 400;
+    letter-spacing: -0.56px;
 }
-
 .techs__names {
-  display: flex;
-  flex-direction: row;
-  column-gap: 10px;
-  margin: 0;
-  padding: 0;
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    margin: 0;
+    padding: 0;
 }
-
 .techs__name {
-  width: 90px;
-  height: 60px;
-  background-color: #e8e8e8;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  font-size: 14px;
-  line-height: 1.21;
-  font-weight: 400;
-  letter-spacing: -0.56px;
+    width: 90px;
+    height: 60px;
+    background-color: #e8e8e8;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.21;
+    font-weight: 400;
+    letter-spacing: -0.56px;
 }
 
 @media (max-width: 1000px) {
-  .techs {
-    padding: 92px 50px 90px;
-  }
-  .techs__desc {
-    padding-top: 80px;
-  }
-  .techs__desc-title {
-    margin-bottom: 23px;
-  }
-  .techs__desc-paragraph {
-    font-size: 12px;
-    line-height: 1.5;
-    letter-spacing: -0.48px;
-    padding: 0 134px;
-    margin-bottom: 82px;
-  }
-  .techs__name {
-    width: 84px;
-    height: 57px;
-    font-size: 12px;
-    line-height: 1.21;
-    letter-spacing: -0.48px;
-  }
-  .techs__names {
-    column-gap: 10px;
-  }
+    .techs {
+        padding: 92px 50px 90px;
+    }
+    .techs__desc {
+        padding-top: 80px;
+    }
+    .techs__desc-title {
+        margin-bottom: 23px;
+    }
+    .techs__desc-paragraph {
+        font-size: 12px;
+        line-height: 1.5;
+        letter-spacing: -0.48px;
+        padding: 0 134px;
+        margin-bottom: 82px;
+    }
+    .techs__name {
+        width: 84px;
+        height: 57px;
+        font-size: 12px;
+        line-height: 1.21;
+        letter-spacing: -0.48px;
+    }
+    .techs__names {
+        column-gap: 10px;
+    }
 }
 @media (max-width: 660px) {
-  .techs {
-    background-color: #fff;
-    padding: 72px 18px;
-  }
-  .techs__names {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  .techs__title {
-    font-size: 18px;
-    letter-spacing: -0.72px;
-    margin-bottom: 28px;
-  }
-  .techs__desc {
-    padding-top: 60px;
-  }
-  .techs__desc-title {
-    font-size: 31px;
-    letter-spacing: -1.8px;
-    line-height: 1.21;
-    margin-bottom: 25px;
-  }
-  .techs__desc-paragraph {
-    font-size: 11px;
-    line-height: 1.4545;
-    letter-spacing: -0.44px;
-    padding: 0 14px;
-    margin-bottom: 50px;
-  }
-  .techs__names {
-    margin: 0 53px;
-    column-gap: 10px;
-    row-gap: 10px;
-  }
+    .techs {
+        background-color: #fff;
+        padding: 72px 18px;
+    }
+    .techs__names {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .techs__title {
+        font-size: 18px;
+        letter-spacing: -0.72px;
+        margin-bottom: 28px;
+    }
+    .techs__desc {
+        padding-top: 60px;
+    }
+    .techs__desc-title {
+        font-size: 31px;
+        letter-spacing: -1.8px;
+        line-height: 1.21;
+        margin-bottom: 25px;
+    }
+    .techs__desc-paragraph {
+        font-size: 11px;
+        line-height: 1.4545;
+        letter-spacing: -0.44px;
+        padding: 0 14px;
+        margin-bottom: 50px;
+    }
+    .techs__names {
+        margin: 0 53px;
+        column-gap: 10px;
+        row-gap: 10px;
+    }
 }

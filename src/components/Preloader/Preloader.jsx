@@ -9,7 +9,8 @@ function Preloader({ isActive }) {
                 <div className="preloader__container">
                     <span className="preloader__round" />
                 </div>
-            </div>) : (<></>)
+            </div>) :
+            (<></>)
     )
 };
 Preloader.propTypes = {

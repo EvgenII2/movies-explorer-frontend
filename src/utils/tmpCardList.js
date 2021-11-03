@@ -26,7 +26,7 @@ const cardList = [
         title: "33 слова о дизайне",
         duration: "1ч42м",
         id: "4",
-        isChecked: false, 
+        isChecked: false,
         isShortMovie: false,
     },
     {

@@ -1,4 +1,3 @@
-import './SavedMovies.css';
 import React from 'react';
 import cardList from "../../utils/tmpCardList";
 import SearchForm from "../SearchForm/SearchForm";

@@ -7,11 +7,22 @@ function Register() {
     return (
         <div className="register">
             <Link to="/">
-                <img src={logo} alt="логотип в шапке" className="login__logo" />
+                <img
+                    src={logo}
+                    alt="логотип в шапке"
+                    className="login__logo"
+                />
             </Link>
-            <form name="loginForm" className="form">
-                <h2 className="form__title">Добро пожаловать!</h2>
-                <p className="form__label">Имя</p>
+            <form
+                name="loginForm"
+                className="form"
+            >
+                <h2 className="form__title">
+                    Добро пожаловать!
+                </h2>
+                <p className="form__label">
+                    Имя
+                </p>
                 <input
                     type="text"
                     name="nameFromFormRegister"
@@ -26,7 +37,9 @@ function Register() {
                     className="form__error"
                     id="nameFromFormRegister-error"
                 />
-                <p className="form__label">E-mail</p>
+                <p className="form__label">
+                    E-mail
+                </p>
                 <input
                     type="email"
                     name="emailFromFormRegister"
@@ -41,7 +54,9 @@ function Register() {
                     className="form__error"
                     id="emailFromFormRegister-error"
                 />
-                <p className="form__label">Пароль</p>
+                <p className="form__label">
+                    Пароль
+                </p>
                 <input
                     type="password"
                     name="passwordFromFormRegister"
@@ -68,7 +83,10 @@ function Register() {
                 </button>
                 <p className="form__text">
                     Уже зарегистрированы?&nbsp;
-                    <Link to="/sign-in" className="form__link">
+                    <Link
+                        to="/sign-in"
+                        className="form__link"
+                    >
                         Войти
                     </Link>
                 </p>

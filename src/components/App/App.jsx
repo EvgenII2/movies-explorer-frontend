@@ -12,42 +12,40 @@ import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
-  return (
-    <div className="App">
-      <Switch>
-        <Route exact path="/">
-          <Header isAuthorized={false} />
-          <Main />
-          <Footer />
-        </Route>
-        <Route exact path="/movies">
-          <Header isAuthorized />
-          <Movies />
-          <Footer />
-        </Route>
-        <Route exact path="/saved-movies">
-          <Header isAuthorized />
-          <SavedMovies />
-          <Footer />
-        </Route>
-        <Route exact path="/profile">
-          <Header isAuthorized />
-          <Profile />
-        </Route>
-        <Route exact path="/sign-in">
-          <Login />
-        </Route>
-        <Route exact path="/sign-up">
-          <Register />
-        </Route>
-        <Route path="/*">
-          <PageNotFound />
-        </Route>
-
-
-      </Switch>
-    </div>
-  );
+    return (
+        <div className="app">
+            <Switch>
+                <Route exact path="/">
+                    <Header isAuthorized={false} />
+                    <Main />
+                    <Footer />
+                </Route>
+                <Route exact path="/movies">
+                    <Header isAuthorized />
+                    <Movies />
+                    <Footer />
+                </Route>
+                <Route exact path="/saved-movies">
+                    <Header isAuthorized />
+                    <SavedMovies />
+                    <Footer />
+                </Route>
+                <Route exact path="/profile">
+                    <Header isAuthorized />
+                    <Profile />
+                </Route>
+                <Route exact path="/sign-in">
+                    <Login />
+                </Route>
+                <Route exact path="/sign-up">
+                    <Register />
+                </Route>
+                <Route path="/*">
+                    <PageNotFound />
+                </Route>
+            </Switch>
+        </div>
+    );
 }
 
 export default App;

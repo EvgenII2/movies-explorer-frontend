@@ -37,6 +37,12 @@
       "last 1 safari version"
     ]
   },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true
+  },
   "devDependencies": {
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
