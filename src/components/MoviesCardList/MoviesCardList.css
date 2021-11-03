@@ -38,3 +38,15 @@
     padding-bottom: 81px;
   }
 }
+
+@media (max-width: 600px) {
+  .movies-cardlist {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+    padding: 40px 0;
+    padding-bottom: 81px;
+  }
+  .movies-cardlist__add-movies-button {
+    width: 240px;
+  }
+}

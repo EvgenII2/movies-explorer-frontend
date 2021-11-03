@@ -10,7 +10,7 @@ function MenuMobile({ clickHandler, isSavedMovies, isMovies, isMain }) {
 
     return (
         <>
-            <div className="menu-mobile__overlay" />
+            <div className="menu-mobile__overlay" onClick={onClick} aria-hidden="true" />
             <div className="menu-mobile__layout">
                 <button type="button" onClick={onClick} className="menu-mobile__button-close">
                     <img src={iconClose} alt="иконка закрыть" className="menu-mobile__image-close" />
@@ -45,4 +45,3 @@ MenuMobile.propTypes = {
 };
 
 export default MenuMobile;
-
