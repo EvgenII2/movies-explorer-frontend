@@ -68,14 +68,29 @@
   font-weight: 500;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
   .profile {
-    padding: 233px 179px 269px;
+    padding: 233px 179px 0px;
   }
   .profile__title {
     margin-bottom: 86px;
   }
   .profile__name-container:last-of-type {
     margin-bottom: 196px;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile {
+    padding: 67px 30px 0px;
+  }
+  .profile__title {
+    margin-bottom: 70px;
+  }
+  .profile__name-container:last-of-type {
+    margin-bottom: 365px;
+  }
+  .profile__button {
+    font-size: 12px;
   }
 }

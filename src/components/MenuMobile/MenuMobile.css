@@ -31,7 +31,7 @@
 }
 
 .menu-mobile__links {
-  margin: 105.44px 0 auto;
+  margin: 103px 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,7 +39,7 @@
 }
 
 .menu-mobile__link {
-  margin-bottom: 24px;
+  margin-bottom: 25px;
   text-decoration: none;
   color: #000;
   font-size: 18px;
@@ -60,4 +60,24 @@
   font-size: 14px;
   line-height: 1.14;
   border-radius: 16px;
+}
+
+@media (max-width: 600px) {
+  .menu-mobile__overlay {
+    display: none;
+  }
+  .menu-mobile__layout {
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding: 13px 13px 189px;
+  }
+  .menu-mobile__links {
+    margin-top: 97px;
+  }
+  .menu-mobile__link {
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+  }
 }

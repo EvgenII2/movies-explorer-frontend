@@ -9,7 +9,7 @@
   border-radius: 3px;
   width: 100%;
   padding: 13px 0 15px;
-  margin: 153px 0 3px;
+  margin: 152px 0 3px;
   color: #fff;
   font-size: 14px;
   line-height: 1.21;
@@ -18,6 +18,21 @@
 
 @media (max-width: 1000px) {
   .register {
-    padding: 231px 186px;
+    padding: 231px 187px 0;
+  }
+  .form-register__button {
+    margin-top: 153px;
+  }
+}
+
+@media (max-width: 600px) {
+  .register {
+    text-align: center;
+    padding: 56px 30px;
+  }
+  .form-register__button {
+    font-size: 12px;
+    padding: 15px 0;
+    margin: 241px 0 3px;
   }
 }

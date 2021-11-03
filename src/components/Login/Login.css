@@ -68,6 +68,27 @@
 
 @media (max-width: 1000px) {
   .login {
-    padding: 232px 186px;
+    padding: 232px 187px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .login {
+    text-align: center;
+    padding: 56px 30px;
+  }
+  .form__title {
+    margin: 47px 0 80px;
+  }
+  .form__label {
+    text-align: left;
+  }
+  .form__button {
+    font-size: 12px;
+    padding: 15px 0;
+    margin: 310px 0 3px;
+  }
+  .form__text {
+    font-size: 12px;
   }
 }

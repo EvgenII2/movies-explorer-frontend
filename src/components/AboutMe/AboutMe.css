@@ -111,8 +111,8 @@
     padding: 91px 50px 72px;
   }
   .about-me__article {
-    margin-bottom: 70px;
-    column-gap: 49px;
+    margin-bottom: 91px;
+    column-gap: 50px;
   }
   .about-me__article-title {
     margin: 0 0 16px;
@@ -154,6 +154,7 @@
   .about-me__article {
     flex-direction: column-reverse;
     row-gap: 40px;
+    margin-bottom: 70px;
     padding-top: 60px;
   }
   .about-me__photo {
