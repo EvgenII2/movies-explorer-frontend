@@ -1,19 +1,31 @@
 import "./SearchForm.css";
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import iconSearch from "../../images/search-icon.svg";
 
-function SearchForm({ changeHandler }) {
+function SearchForm({ changeHandler, searchHandler }) {
+
+    const [searchWord, setSearchWord] = useState('');
+
+    const onSubmit = (ev) => {
+        ev.preventDefault();
+        searchHandler(searchWord);
+    }
+    const onInput = (ev) => {
+        setSearchWord(ev.currentTarget.value);
+    }
+
     return (
         <div className="search-form-container">
-            <form name="searchForm" className="search-form">
+            <form name="searchForm" className="search-form" onSubmit={onSubmit}>
                 <input
                     type="text"
                     name="filmFromSearchForm"
                     id="film-from-search-form"
                     className="search-form__input"
-                    required
+                    
                     placeholder="Фильм"
+                    onInput={onInput}
                 />
                 <button type="submit" className="search-form__button">
                     <img
@@ -41,6 +53,7 @@ function SearchForm({ changeHandler }) {
 
 SearchForm.propTypes = {
     changeHandler: PropTypes.func.isRequired,
+    searchHandler: PropTypes.func.isRequired,
 };
 
 export default SearchForm;

@@ -56,6 +56,7 @@ function Login() {
                     className="form__button"
                     onClick={(e) => {
                         e.preventDefault();
+                        
                         window.location.assign('http://localhost:3000/movies/');
                     }}
                 >

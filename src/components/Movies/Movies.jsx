@@ -1,28 +1,48 @@
 import "./Movies.css";
 import React from "react";
-import cardList from "../../utils/tmpCardList";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import moviesApi from '../../utils/MoviesApi';
+
 
 function Movies() {
     const [isShowedShortMovies, setIsShowedShortMovies] = React.useState(false);
-    const [tmpCardList, setTmpCardList] = React.useState(cardList);
+    const [cardList, setCardList] = React.useState([]);
+    const [allMovies, setAllMovies] = React.useState([]);
+
     const showShortMoviesHandler = () => {
         setIsShowedShortMovies(!isShowedShortMovies);
     };
+
+    const searchMoviesHandler = (searchWord) => {
+        setCardList(
+            allMovies.filter((movie) => {
+                const tmp = movie.nameRU.includes(searchWord);
+                return tmp;
+            })
+        );
+    }
+
     React.useEffect(() => {
-        if (isShowedShortMovies) {
-            setTmpCardList(cardList.filter((movie) => movie.isShortMovie));
-        } else {
-            setTmpCardList(cardList);
-        }
-    }, [isShowedShortMovies, setTmpCardList]);
+        moviesApi.getMovies()
+            .then((res) => { setAllMovies(res); })
+            .catch((err) => {
+                console.log(`Error: ${err}`);
+            });
+    }, []);
+    // React.useEffect(() => {
+    //     if (isShowedShortMovies) {
+    //         setCardList(cardList.filter((movie) => movie.isShortMovie));
+    //     } else {
+    //         setCardList(cardList);
+    //     }
+    // }, [isShowedShortMovies, setCardList, cardList]);
     return (
         <div className="movies">
-            <SearchForm changeHandler={showShortMoviesHandler} />
+            <SearchForm changeHandler={showShortMoviesHandler} searchHandler={searchMoviesHandler} />
             <Preloader isActive={false} />
-            <MoviesCardList cardList={tmpCardList} />
+            <MoviesCardList cardList={cardList} isShowedShortMovies={isShowedShortMovies} />
         </div>
     );
 }
