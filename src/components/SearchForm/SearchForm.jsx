@@ -1,9 +1,8 @@
 import "./SearchForm.css";
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import iconSearch from "../../images/search-icon.svg";
 
-function SearchForm({ changeHandler, searchHandler }) {
+function SearchForm({ changeHandler, searchHandler, messageError, isShowSearchError }) {
 
     const [searchWord, setSearchWord] = useState('');
 
@@ -17,13 +16,16 @@ function SearchForm({ changeHandler, searchHandler }) {
 
     return (
         <div className="search-form-container">
-            <form name="searchForm" className="search-form" onSubmit={onSubmit}>
+            <form
+                name="searchForm"
+                className="search-form"
+                onSubmit={onSubmit}
+            >
                 <input
                     type="text"
                     name="filmFromSearchForm"
                     id="film-from-search-form"
                     className="search-form__input"
-                    
                     placeholder="Фильм"
                     onInput={onInput}
                 />
@@ -34,7 +36,13 @@ function SearchForm({ changeHandler, searchHandler }) {
                         alt="иконка поиска"
                     />
                 </button>
+
             </form>
+            {isShowSearchError &&
+                <span className="search-form__error">
+                    {messageError}
+                </span>
+            }
             <div className="checkbox-container">
                 <label htmlFor="checkbox-films" className="checkbox">
                     <input
@@ -50,10 +58,5 @@ function SearchForm({ changeHandler, searchHandler }) {
         </div>
     );
 }
-
-SearchForm.propTypes = {
-    changeHandler: PropTypes.func.isRequired,
-    searchHandler: PropTypes.func.isRequired,
-};
 
 export default SearchForm;

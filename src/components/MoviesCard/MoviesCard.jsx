@@ -1,73 +1,84 @@
 import "./MoviesCard.css";
-// import { Link, useLocation } from 'react-router-dom';
-import PropTypes from "prop-types";
 import React from "react";
 import deleteIcon from '../../images/delete-icon.svg';
+import api from "../../utils/MainApi";
+import { BASE_URL } from "../../utils/constants";
+import { useLocation } from "react-router";
 
-function MoviesCard({ picture, title, duration, trailerLink, isShortFilm, isShowedShortMovies }) {
-    // const [isLiked, setIsLiked] = React.useState(isChecked);
-    // const location = useLocation();
-    // const isSavedMovies = location.pathname === "/saved-movies";
-    // function handleChange() {
-    //     setIsLiked(!isLiked);
-    // }
+function MoviesCard({ movie }) {
+
+    const location = useLocation();
+    const isSavedMovies = location.pathname === "/saved-movies";
+
+    function onChange(e) {
+        if (e.currentTarget.checked) {
+            api.addMovie(movie)
+                .then((res) => {
+                    console.log('ok, add');
+                })
+                .catch((err) => {
+                    console.log(`Error: ${err}`);
+                });
+        } else {
+            api.removeMovie(movie.id)
+                .then((res) => {
+                    console.log('ok, delete');
+                })
+                .catch((err) => {
+                    console.log(`Error: ${err}`);
+                });
+        }
+
+    }
+    function onClick() {
+        api.removeMovie(movie.id)
+            .then((res) => {
+                console.log('ok, delete');
+            })
+            .catch((err) => {
+                console.log(`Error: ${err}`);
+            });
+    }
 
     return (
-        (isShortFilm || !isShowedShortMovies) &&
         <div className="movies-card">
             <a
-                href={trailerLink}
+                href={movie.trailerLink}
                 target="_blank"
                 rel="noreferrer"
             >
                 <img
                     className="movies-card__image"
-                    src={picture}
-                    alt={`фото ${title}`}
+                    src={`${BASE_URL + movie.image.url}`}
+                    alt={`фото ${movie.nameRU}`}
                 />
             </a >
             <div className="movies-card__info">
                 <div className="movies-card__info-first-line">
-                    <h2 className="movies-card__title">{title}</h2>
-                    <button type="button" className="movies-card__delete-button">
-                        <img
-                            className="movies-card__delete-icon"
-                            src={deleteIcon}
-                            alt="исонка удалить"
+                    <h2 className="movies-card__title">{movie.nameRU}</h2>
+                    {isSavedMovies ?
+                        <button type="button" className="movies-card__delete-button" onClick={onClick}>
+                            <img
+                                className="movies-card__delete-icon"
+                                src={deleteIcon}
+                                alt="исонка удалить"
+                            />
+                        </button> :
+                        <input
+                            type="checkbox"
+                            // checked={isLiked}
+                            className="movies-card__checkbox-like"
+                            onChange={onChange}
                         />
-                    </button> :
-                    <input
-                        type="checkbox"
-                        // checked={isLiked}
-                        className="movies-card__checkbox-like"
-                    // onChange={handleChange}
-                    />
+                    }
                 </div>
                 <p className="movies-card__duration">
-                    {duration}
+                    {movie.duration}
                 </p>
             </div>
 
         </div>
     )
 }
-
-MoviesCard.propTypes = {
-    picture: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    trailerLink: PropTypes.string,
-    duration: PropTypes.number.isRequired,
-    isShortFilm: PropTypes.bool.isRequired,
-    isShowedShortMovies: PropTypes.bool.isRequired,
-};
-
-MoviesCard.defaultProps = {
-    // picture: PropTypes.string.isRequired,
-    // title: PropTypes.string.isRequired,
-    trailerLink: '',
-    // duration: PropTypes.number.isRequired,
-    // isShortFilm: PropTypes.bool.isRequired,
-    // isShowedShortMovies: PropTypes.bool.isRequired,
-};
 
 export default MoviesCard;

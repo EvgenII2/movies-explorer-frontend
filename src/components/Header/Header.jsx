@@ -13,8 +13,6 @@ function Header({ loggedIn }) {
     const isSavedMovies = location.pathname === "/saved-movies";
     const isMain = location.pathname === "/";
 
-    console.log(currentUser);
-
     const [isMenuOpened, setIsMenuOpened] = useState(false);
 
     const clickHandler = () => {

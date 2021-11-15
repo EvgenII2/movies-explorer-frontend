@@ -29,10 +29,10 @@ function App() {
     React.useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) {
+            setIsLoading(true);
             auth
                 .tokenCheck(token)
                 .then((resp) => {
-                    console.log(resp);
                     setLoggedIn(true);
                     setCurrentUser({ email: resp.email, name: resp.name });
                     history.push("/movies");

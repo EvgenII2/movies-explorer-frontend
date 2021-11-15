@@ -4,7 +4,7 @@ export class MainApi {
         this._baseUrl = this._options.baseUrl;
     }
 
-    static _checkResponse(res) {
+    _checkResponse(res) {
         if (res.ok) {
             return res.json();
         }
@@ -17,7 +17,7 @@ export class MainApi {
                 authorization: `Bearer ${localStorage.getItem('token')}`,
                 "Content-Type": "application/json",
             },
-        }).then(this.checkResponse);
+        }).then(this._checkResponse);
     }
 
     editUser(name, email) {
@@ -31,26 +31,51 @@ export class MainApi {
                 name,
                 email,
             }),
-        }).then(this.checkResponse);
+        }).then(this._checkResponse);
     }
 
-    addMovie() {
-        return fetch(`${this._baseUrl}/cards`, {
+    getMovies() {
+        return fetch(`${this._baseUrl}/movies`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('token')}`,
                 "Content-Type": "application/json",
             },
-        }).then(this.checkResponse);
+        }).then(this._checkResponse);
+    }
+
+    addMovie(movie) {
+        return fetch(`${this._baseUrl}/movies`, {
+            method: "POST",
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                country: movie.country,
+                director: movie.director,
+                duration: movie.duration,
+                year: movie.year,
+                description: movie.description,
+                image: movie.image.url,
+                trailer: movie.trailer,
+                thumbnail: movie.image.formats.thumbnail.url,
+                movieId: movie.movieId,
+                nameRU: movie.nameRU,
+                nameEN: movie.nameEN,
+                id: movie.id,
+            }),
+
+        }).then(this._checkResponse);
     }
 
     removeMovie(movieId) {
-        return fetch(`${this._baseUrl}/cards${movieId}`, {
+        return fetch(`${this._baseUrl}/movies/6192816b9fb9229fb6219ae7`, {
             method: "DELETE",
             headers: {
                 authorization: `Bearer ${localStorage.getItem('token')}`,
                 "Content-Type": "application/json",
             },
-        }).then(this.checkResponse);
+        }).then(this._checkResponse);
     }
 }
 
