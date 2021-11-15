@@ -4,9 +4,10 @@ import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import moviesApi from '../../utils/MoviesApi';
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
-
-function Movies() {
+function Movies({ loggedIn }) {
     const [isShowedShortMovies, setIsShowedShortMovies] = React.useState(false);
     const [cardList, setCardList] = React.useState([]);
     const [allMovies, setAllMovies] = React.useState([]);
@@ -39,11 +40,17 @@ function Movies() {
     //     }
     // }, [isShowedShortMovies, setCardList, cardList]);
     return (
-        <div className="movies">
-            <SearchForm changeHandler={showShortMoviesHandler} searchHandler={searchMoviesHandler} />
-            <Preloader isActive={false} />
-            <MoviesCardList cardList={cardList} isShowedShortMovies={isShowedShortMovies} />
-        </div>
+        <>
+            <Header
+                loggedIn={loggedIn}
+            />
+            <div className="movies">
+                <SearchForm changeHandler={showShortMoviesHandler} searchHandler={searchMoviesHandler} />
+                <Preloader isActive={false} />
+                <MoviesCardList cardList={cardList} isShowedShortMovies={isShowedShortMovies} />
+            </div>
+            <Footer />
+        </>
     );
 }
 

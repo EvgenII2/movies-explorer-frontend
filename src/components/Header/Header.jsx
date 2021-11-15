@@ -1,17 +1,19 @@
 import './Header.css';
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import MenuMobile from '../MenuMobile/MenuMobile';
 import logo from '../../images/header-logo.svg';
 import burgerIcon from '../../images/burger-icon.svg';
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-
-function Header({ isAuthorized }) {
+function Header({ loggedIn }) {
+    const currentUser = React.useContext(CurrentUserContext);
     const location = useLocation();
     const isMovies = location.pathname === "/movies";
     const isSavedMovies = location.pathname === "/saved-movies";
     const isMain = location.pathname === "/";
+
+    console.log(currentUser);
 
     const [isMenuOpened, setIsMenuOpened] = useState(false);
 
@@ -20,7 +22,7 @@ function Header({ isAuthorized }) {
     };
 
     return (
-        <div className={isAuthorized ?
+        <div className={loggedIn ?
             "header header_background-color_transparent" :
             "header"}>
             <Link to="/">
@@ -30,7 +32,7 @@ function Header({ isAuthorized }) {
                     className="header__logo"
                 />
             </Link>
-            {!isAuthorized ? (
+            {!loggedIn ? (
                 <nav className="header__link-container">
                     <Link
                         className="header__link header__link_color_white"
@@ -87,7 +89,7 @@ function Header({ isAuthorized }) {
                                 className="header__link header__link-accaunt"
                                 to="/profile"
                             >
-                                Аккаунт
+                                {currentUser.email}
                             </Link>
                         </nav>)
                     }
@@ -95,10 +97,6 @@ function Header({ isAuthorized }) {
             )}
         </div >
     )
-}
-
-Header.propTypes = {
-    isAuthorized: PropTypes.bool.isRequired
 }
 
 export default Header;

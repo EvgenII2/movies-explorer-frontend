@@ -4,7 +4,6 @@ class MoviesApi {
         this.baseUrl = this.options.baseUrl;
     }
 
-
     getMovies() {
         return fetch(`${this.baseUrl}`, {
             method: "GET",

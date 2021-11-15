@@ -38,14 +38,14 @@ function MoviesCardList({ cardList, isShowedShortMovies }) {
                     ))
                 }
             </div>
-
-            <button
+            {cardList?.length > 0 && (<button
                 type="button"
                 className="movies-cardlist__add-movies-button"
                 onClick={onClick}
             >
                 Ещё
-            </button>
+            </button>)}
+
         </>
     );
 }
