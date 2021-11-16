@@ -13,70 +13,106 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import auth from '../../utils/auth';
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import api from "../../utils/MainApi";
+import moviesApi from '../../utils/MoviesApi';
 
 function App() {
 
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState("");
-    const [isLoading, setIsLoading] = React.useState(true);
+
+    const [allLikedMovies, setAllLikedMovies] = React.useState([]);
+    const [allMovies, setAllMovies] = React.useState([]);
 
     function onLogin(isLoggedIn) {
         setLoggedIn(isLoggedIn);
     }
 
     const history = useHistory();
+    React.useEffect(() => {
+        api
+            .getMovies()
+            .then((res) => {
+                setAllLikedMovies(res.filter(movie => { return movie.owner === currentUser.id }));
+            })
+            .catch((err) => {
+                console.log(`Error: ${err}`);
+            });
+    }, [currentUser.id]);
+
+    React.useEffect(() => {
+        const movies = localStorage.getItem("movies");
+        if (!movies) {
+            moviesApi.getMovies()
+                .then((res) => {
+                    setAllMovies(res);
+                    localStorage.setItem('movies', JSON.stringify(res));
+                })
+                .catch((err) => {
+                    console.log(`Error: ${err}`);
+
+                });
+        } else {
+            setAllMovies(JSON.parse(movies));
+        }
+    }, []);
 
     React.useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) {
-            setIsLoading(true);
             auth
                 .tokenCheck(token)
                 .then((resp) => {
                     setLoggedIn(true);
-                    setCurrentUser({ email: resp.email, name: resp.name });
-                    history.push("/movies");
-                    setIsLoading(false);
+                    setCurrentUser({
+                        email: resp.email,
+                        name: resp.name,
+                        id: resp._id
+                    });
+                    // history.push("/");
                 })
                 .catch((err) => {
                     console.log(`Error: ${err}`);
                     localStorage.removeItem("token");
                 });
-        } else setIsLoading(false);
-    }, [history]);
+        }
+    }, []);
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className="app">
                 <Switch>
-                    <Route exact path="/sign-up">
+                    <ProtectedRoute
+                        loggedIn={loggedIn}
+                        allMovies={allMovies}
+                        allLikedMovies={allLikedMovies}
+                        updateLikedFilms={setAllLikedMovies}
+                        path="/movies"
+                        component={Movies}
+                    />
+                    <ProtectedRoute
+                        loggedIn={loggedIn}
+                        allLikedMovies={allLikedMovies}
+                        updateLikedFilms={setAllLikedMovies}
+                        path="/saved-movies"
+                        component={SavedMovies}
+                    />
+                    <ProtectedRoute
+                        path="/profile"
+                        loggedIn={loggedIn}
+                        component={Profile}
+                    />
+                    <Route path="/sign-up">
                         <Register />
                     </Route>
-                    <Route exact path="/sign-in">
+                    <Route path="/sign-in">
                         <Login
                             loggedIn={loggedIn}
                             setCurrentUser={setCurrentUser}
                             onLogin={onLogin}
                         />
                     </Route>
-                    <ProtectedRoute
-                        loggedIn={loggedIn}
-                        currentUser={currentUser}
-                        exact path="/movies"
-                        component={Movies}
-                    />
-                    <ProtectedRoute
-                        loggedIn={loggedIn}
-                        currentUser={currentUser}
-                        exact path="/saved-movies"
-                        component={SavedMovies}
-                    />
-                    <ProtectedRoute
-                        exact path="/profile"
-                        loggedIn={loggedIn}
-                        component={Profile}
-                    />
-                    <Route exact path="/">
+                    <Route path="/">
                         <Header
                             loggedIn={loggedIn}
                         />

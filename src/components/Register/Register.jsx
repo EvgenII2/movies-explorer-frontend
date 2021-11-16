@@ -66,9 +66,11 @@ function Register() {
     }
     function handleSubmit(e) {
         e.preventDefault();
+        console.log(email, name, password)
         auth
             .register(email, name, password)
             .then((data) => {
+                console.log(data);
                 history.push("/sign-in");
             })
             .catch((err) => console.log(`Error: ${err}`));
@@ -162,11 +164,7 @@ function Register() {
                 <button
                     type="submit"
                     className="form-register__button"
-                    disabled={!isFormValid}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        window.location.assign('http://localhost:3000/sign-in/');
-                    }}
+                    disabled={!isFormValid}                    
                 >
                     Зарегистрироваться
                 </button>

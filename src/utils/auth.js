@@ -10,7 +10,7 @@ export class Auth {
         return Promise.reject(new Error(`Ошибка: ${res.status}`));
     }
 
-    register(email, password, name) {
+    register(email, name, password ) {
         return fetch(`${this._baseUrl}/signup`, {
             method: "POST",
             headers: {
@@ -50,6 +50,7 @@ export class Auth {
 
 const auth = new Auth({
     baseUrl: "https://devdiploma.nomoredomains.monster",
+    // baseUrl: "https://https://localhost:3001",
 });
 
 export default auth;

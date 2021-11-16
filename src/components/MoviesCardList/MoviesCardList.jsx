@@ -4,7 +4,7 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import useLoadingNumber from "../../utils/useLoadingNumber";
 import { useLocation } from "react-router";
 
-function MoviesCardList({ cardList }) {
+function MoviesCardList({ cardList, allLikedMovies, updateLikedFilms }) {
 
     const location = useLocation();
     const isSavedMovies = location.pathname === "/saved-movies";
@@ -33,8 +33,10 @@ function MoviesCardList({ cardList }) {
                 {filteredMovies &&
                     filteredMovies.map((card) => (
                         <MoviesCard
-                            key={card.id}
+                            key={card?._id || card?.id}
                             movie={card}
+                            updateLikedFilms={updateLikedFilms}
+                            allLikedMovies={allLikedMovies}
                         />
                     ))
                 }

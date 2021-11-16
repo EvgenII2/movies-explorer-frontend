@@ -5,12 +5,18 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from "../Preloader/Preloader";
 import SearchForm from '../SearchForm/SearchForm';
 import { DURATION_SHORT_FILM } from "../../utils/constants";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import api from "../../utils/MainApi";
 
-function SavedMovies({ loggedIn }) {
+function SavedMovies({ loggedIn, allLikedMovies, updateLikedFilms }) {
+
+    const currentUser = React.useContext(CurrentUserContext);
+
+    console.log(allLikedMovies)
+
     const [isShowedShortMovies, setIsShowedShortMovies] = React.useState(false);
     const [isShowSearchError, setIsShowSearchError] = React.useState(false);
-    const [cardList, setCardList] = React.useState([]);
+    const [cardList, setCardList] = React.useState(allLikedMovies);
     const [allMovies, setAllMovies] = React.useState([]);
     const [messageError, setMessageError] = React.useState('');
     const [isLoading, setIsLoading] = React.useState(false);
@@ -20,7 +26,7 @@ function SavedMovies({ loggedIn }) {
     };
 
     function search(searchWord) {
-        if (searchWord.length === 0) {
+        if (searchWord.length > 0) {
             let filteredMovies = allMovies.filter((movie) => {
                 return movie.nameRU.includes(searchWord);
             });
@@ -43,21 +49,9 @@ function SavedMovies({ loggedIn }) {
     }
 
     React.useEffect(() => {
-        setIsLoading(true);
-        api.getMovies()
-            .then((res) => {
-                setCardList(res);
-                setAllMovies(res);
-                console.log(res)
-                setIsLoading(false);
-            })
-            .catch((err) => {
-                console.log(`Error: ${err}`);
-                setMessageError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
-                setIsShowSearchError(true);
-                setIsLoading(false);
-            });
-    }, []);
+        setAllMovies(allLikedMovies);
+    }, [allLikedMovies]);
+
     return (
         <>
             <Header
@@ -75,6 +69,8 @@ function SavedMovies({ loggedIn }) {
                 />
                 <MoviesCardList
                     cardList={cardList}
+                    updateLikedFilms={updateLikedFilms}
+                    allLikedMovies={allLikedMovies}
                     isShowedShortMovies={isShowedShortMovies}
                 />
             </div>

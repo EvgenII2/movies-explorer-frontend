@@ -56,20 +56,19 @@ export class MainApi {
                 duration: movie.duration,
                 year: movie.year,
                 description: movie.description,
-                image: movie.image.url,
-                trailer: movie.trailer,
+                image:  movie.image.url,
+                trailer: movie.trailerLink,
                 thumbnail: movie.image.formats.thumbnail.url,
-                movieId: movie.movieId,
+                id: movie.id,
                 nameRU: movie.nameRU,
                 nameEN: movie.nameEN,
-                id: movie.id,
             }),
 
         }).then(this._checkResponse);
     }
 
     removeMovie(movieId) {
-        return fetch(`${this._baseUrl}/movies/6192816b9fb9229fb6219ae7`, {
+        return fetch(`${this._baseUrl}/movies/${movieId}`, {
             method: "DELETE",
             headers: {
                 authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -81,6 +80,7 @@ export class MainApi {
 
 const api = new MainApi({
     baseUrl: "https://devdiploma.nomoredomains.monster",
+    // baseUrl: "https://localhost:3001",
     headers: {
         Authorization: 'Bearer ' + localStorage.getItem("token")
     },
