@@ -5,8 +5,7 @@ import api from "../../utils/MainApi";
 import { BASE_URL } from "../../utils/constants";
 import { useLocation } from "react-router";
 
-
-function MoviesCard({ movie, allLikedMovies, updateLikedFilms }) {
+function MoviesCard({ movie, allLikedMovies, setIsUpdateLikedMovies }) {
     let srcIm = '';
     let link = '';
     const location = useLocation();
@@ -19,80 +18,86 @@ function MoviesCard({ movie, allLikedMovies, updateLikedFilms }) {
         link = movie.trailerLink;
     }
 
-    let isChecked = allLikedMovies.filter(m => m.id === movie.id).length > 0;
-    console.log(isChecked);
+    const [isChecked, setIsChecked] = useState(allLikedMovies.filter(m => m.id === movie.id).length > 0);
+    const [isRemoved, setIsRemoved] = useState(false);
+
     function onChange() {
-        console.log(movie)
         if (!isChecked) {
-            console.log(movie)
             api.addMovie(movie)
                 .then((res) => {
                     console.log('ok, add', res._id);
-                    isChecked = !isChecked;
+                    setIsChecked(true);
+                    setIsUpdateLikedMovies(true);
                 })
                 .catch((err) => {
                     console.log(`Error: ${err}`);
                 });
         } else {
-            api.removeMovie(movie._id)
+            const movieForRemove = allLikedMovies.find(m => m.id === movie.id);
+            api.removeMovie(movieForRemove?._id)
                 .then((res) => {
-                    isChecked = !isChecked;
-                    console.log('ok, delete');
+                    setIsUpdateLikedMovies(true);
+                    console.log('ok, delete', res);
+                    setIsChecked(false);
                 })
                 .catch((err) => {
                     console.log(`Error: ${err}`);
                 });
         }
     }
-    async function onClick() {
-        api.removeMovie(movie._id)
+
+    function onClick() {
+        const movieForRemove = allLikedMovies.find(m => m.id === movie.id);
+        api.removeMovie(movieForRemove?._id)
             .then((res) => {
                 console.log('ok, delete');
+                setIsUpdateLikedMovies(true);
+                setIsRemoved(true);
             })
             .catch((err) => {
                 console.log(`Error: ${err}`);
             });
-        // await updateLikedFilms()
     }
-    console.log(isSavedMovies)
     return (
-        <div className="movies-card">
-            <a
-                href={link}
-                target="_blank"
-                rel="noreferrer"
-            >
-                <img
-                    className="movies-card__image"
-                    src={`${BASE_URL + srcIm}`}
-                    alt={`фото ${movie.nameRU}`}
-                />
-            </a >
-            <div className="movies-card__info">
-                <div className="movies-card__info-first-line">
-                    <h2 className="movies-card__title">{movie.nameRU}</h2>
-                    {isSavedMovies ?
-                        <button type="button" className="movies-card__delete-button" onClick={onClick}>
-                            <img
-                                className="movies-card__delete-icon"
-                                src={deleteIcon}
-                                alt="исонка удалить"
+        !isRemoved && (
+            <div className="movies-card">
+                <a
+                    href={link}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    <img
+                        className="movies-card__image"
+                        src={`${BASE_URL + srcIm}`}
+                        alt={`фото ${movie.nameRU}`}
+                    />
+                </a >
+                <div className="movies-card__info">
+                    <div className="movies-card__info-first-line">
+                        <h2 className="movies-card__title">{movie.nameRU}</h2>
+                        {isSavedMovies ?
+                            <button type="button" className="movies-card__delete-button" onClick={onClick}>
+                                <img
+                                    className="movies-card__delete-icon"
+                                    src={deleteIcon}
+                                    alt="исонка удалить"
+                                />
+                            </button> :
+                            <input
+                                type="checkbox"
+                                checked={isChecked}
+                                className="movies-card__checkbox-like"
+                                onChange={onChange}
                             />
-                        </button> :
-                        <input
-                            type="checkbox"
-                            checked={isChecked}
-                            className="movies-card__checkbox-like"
-                            onChange={onChange}
-                        />
-                    }
+                        }
+                    </div>
+                    <p className="movies-card__duration">
+                        {movie.duration}
+                    </p>
                 </div>
-                <p className="movies-card__duration">
-                    {movie.duration}
-                </p>
-            </div>
 
-        </div>
+            </div>
+        )
     )
 }
 

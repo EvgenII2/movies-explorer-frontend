@@ -5,7 +5,7 @@ import logo from '../../images/header-logo.svg';
 import auth from "../../utils/auth";
 import { checkValidName, checkValidEmail, checkValidPassword } from "../../utils/validation"
 
-function Register() {
+function Register(onLogin, setIsUpdateCurrentUser) {
     const [email, setEmail] = React.useState("");
     const [isShowEmailError, setIsShowEmailError] = React.useState(false);
     const [isValidEmail, setIsValidEmail] = React.useState(false);
@@ -66,12 +66,22 @@ function Register() {
     }
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(email, name, password)
         auth
             .register(email, name, password)
             .then((data) => {
+                auth
+                    .authorize(email, password)
+                    .then((data) => {
+                        localStorage.setItem("token", data.token);
+                        onLogin(true);
+                        history.push('./movies');
+                        setIsUpdateCurrentUser(true);
+                    })
+                    .catch((err) => {
+                        console.log(`Error: ${err}`);
+                    });
                 console.log(data);
-                history.push("/sign-in");
+                history.push("/movie");
             })
             .catch((err) => console.log(`Error: ${err}`));
     }
@@ -164,7 +174,7 @@ function Register() {
                 <button
                     type="submit"
                     className="form-register__button"
-                    disabled={!isFormValid}                    
+                    disabled={!isFormValid}
                 >
                     Зарегистрироваться
                 </button>

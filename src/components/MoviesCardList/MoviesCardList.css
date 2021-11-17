@@ -25,6 +25,7 @@
     border: 0;
     margin: 0;
     padding: 0;
+    cursor: pointer;
 }
 
 @media (max-width: 1000px) {

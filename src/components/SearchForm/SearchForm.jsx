@@ -29,7 +29,10 @@ function SearchForm({ changeHandler, searchHandler, messageError, isShowSearchEr
                     placeholder="Фильм"
                     onInput={onInput}
                 />
-                <button type="submit" className="search-form__button">
+                <button
+                    type="submit"
+                    className="search-form__button"
+                >
                     <img
                         src={iconSearch}
                         className="search-form__icon"
@@ -44,7 +47,10 @@ function SearchForm({ changeHandler, searchHandler, messageError, isShowSearchEr
                 </span>
             }
             <div className="checkbox-container">
-                <label htmlFor="checkbox-films" className="checkbox">
+                <label
+                    htmlFor="checkbox-films"
+                    className="checkbox"
+                >
                     <input
                         type="checkbox"
                         id="checkbox-films"

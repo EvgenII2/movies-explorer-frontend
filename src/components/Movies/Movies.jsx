@@ -8,21 +8,28 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { DURATION_SHORT_FILM } from "../../utils/constants"
 
-function Movies({ loggedIn, allMovies, allLikedMovies, updateLikedFilms }) {
-    const [isShowedShortMovies, setIsShowedShortMovies] = React.useState(false);
+function Movies(
+    { loggedIn,
+        allMovies,
+        allLikedMovies,
+        setIsUpdateMovies,
+        setIsUpdateLikedMovies,
+        error,
+        isLoading,
+    }) {
+        const [isShowedShortMovies, setIsShowedShortMovies] = React.useState(false);
     const [isShowSearchError, setIsShowSearchError] = React.useState(false);
     const [cardList, setCardList] = React.useState([]);
-    const [messageError, setMessageError] = React.useState('');
-    const [isLoading, setIsLoading] = React.useState(false);
+    const [messageError, setMessageError] = React.useState(error);
 
     const showShortMoviesHandler = () => {
         setIsShowedShortMovies(!isShowedShortMovies);
     };
 
-    async function search(searchWord) {
+    function search(searchWord) {
         setCardList([]);
-        setIsLoading(true);
         if (searchWord.length > 0) {
+            setIsUpdateMovies(true);
             let filteredMovies = allMovies.filter((movie) => {
                 return movie.nameRU.includes(searchWord);
             });
@@ -42,7 +49,6 @@ function Movies({ loggedIn, allMovies, allLikedMovies, updateLikedFilms }) {
             setMessageError('Нужно ввести ключевое слово');
             setIsShowSearchError(true);
         }
-        setIsLoading(false);
     }
 
     return (
@@ -60,12 +66,14 @@ function Movies({ loggedIn, allMovies, allLikedMovies, updateLikedFilms }) {
                 <Preloader
                     isLoading={isLoading}
                 />
-                <MoviesCardList
-                    cardList={cardList}
-                    isShowedShortMovies={isShowedShortMovies}
-                    allLikedMovies={allLikedMovies}
-                    updateLikedFilms={updateLikedFilms}
-                />
+                {!isLoading &&
+                    <MoviesCardList
+                        cardList={cardList}
+                        isShowedShortMovies={isShowedShortMovies}
+                        allLikedMovies={allLikedMovies}
+                        setIsUpdateLikedMovies={setIsUpdateLikedMovies}
+                    />
+                }
             </div>
             <Footer />
         </>

@@ -2,24 +2,15 @@ import React from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import Preloader from "../Preloader/Preloader";
 import SearchForm from '../SearchForm/SearchForm';
 import { DURATION_SHORT_FILM } from "../../utils/constants";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import api from "../../utils/MainApi";
 
-function SavedMovies({ loggedIn, allLikedMovies, updateLikedFilms }) {
-
-    const currentUser = React.useContext(CurrentUserContext);
-
-    console.log(allLikedMovies)
+function SavedMovies({ loggedIn, allLikedMovies, setIsUpdateLikedMovies }) {
 
     const [isShowedShortMovies, setIsShowedShortMovies] = React.useState(false);
     const [isShowSearchError, setIsShowSearchError] = React.useState(false);
     const [cardList, setCardList] = React.useState(allLikedMovies);
-    const [allMovies, setAllMovies] = React.useState([]);
     const [messageError, setMessageError] = React.useState('');
-    const [isLoading, setIsLoading] = React.useState(false);
 
     const showShortMoviesHandler = () => {
         setIsShowedShortMovies(!isShowedShortMovies);
@@ -27,7 +18,7 @@ function SavedMovies({ loggedIn, allLikedMovies, updateLikedFilms }) {
 
     function search(searchWord) {
         if (searchWord.length > 0) {
-            let filteredMovies = allMovies.filter((movie) => {
+            let filteredMovies = cardList.filter((movie) => {
                 return movie.nameRU.includes(searchWord);
             });
             if (isShowedShortMovies) {
@@ -48,10 +39,6 @@ function SavedMovies({ loggedIn, allLikedMovies, updateLikedFilms }) {
         }
     }
 
-    React.useEffect(() => {
-        setAllMovies(allLikedMovies);
-    }, [allLikedMovies]);
-
     return (
         <>
             <Header
@@ -64,14 +51,11 @@ function SavedMovies({ loggedIn, allLikedMovies, updateLikedFilms }) {
                     messageError={messageError}
                     isShowSearchError={isShowSearchError}
                 />
-                <Preloader
-                    isLoading={isLoading}
-                />
                 <MoviesCardList
                     cardList={cardList}
-                    updateLikedFilms={updateLikedFilms}
-                    allLikedMovies={allLikedMovies}
                     isShowedShortMovies={isShowedShortMovies}
+                    allLikedMovies={allLikedMovies}
+                    setIsUpdateLikedMovies={setIsUpdateLikedMovies}
                 />
             </div>
             <Footer />

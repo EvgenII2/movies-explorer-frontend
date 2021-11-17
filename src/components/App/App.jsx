@@ -20,42 +20,70 @@ function App() {
 
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState("");
+    const [isUpdateCurrentUser, setIsUpdateCurrentUser] = React.useState(false);
 
     const [allLikedMovies, setAllLikedMovies] = React.useState([]);
+    const [isUpdateLikedMovies, setIsUpdateLikedMovies] = React.useState(true);
     const [allMovies, setAllMovies] = React.useState([]);
-
-    function onLogin(isLoggedIn) {
-        setLoggedIn(isLoggedIn);
-    }
-
-    const history = useHistory();
-    React.useEffect(() => {
-        api
-            .getMovies()
-            .then((res) => {
-                setAllLikedMovies(res.filter(movie => { return movie.owner === currentUser.id }));
-            })
-            .catch((err) => {
-                console.log(`Error: ${err}`);
-            });
-    }, [currentUser.id]);
+    const [isUpdateMovies, setIsUpdateMovies] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [error, setError] = React.useState("");
 
     React.useEffect(() => {
-        const movies = localStorage.getItem("movies");
-        if (!movies) {
+        console.log('updateUser');
+        if (isUpdateCurrentUser) {
+            api
+                .getUser()
+                .then((res) => {
+                    setCurrentUser({
+                        email: res.email,
+                        name: res.name,
+                        id: res._id
+                    });
+                    
+                })
+                .catch((err) => {
+                    console.log(`Error: ${err}`);
+                });
+        }
+    }, [isUpdateCurrentUser]);
+
+    React.useEffect(() => {
+        if (isUpdateLikedMovies) {
+            api
+                .getMovies()
+                .then((res) => {
+                    setAllLikedMovies(res.filter(movie => { return movie.owner === currentUser.id }));
+                    setIsUpdateLikedMovies(false);
+                    console.log('update');
+                })
+                .catch((err) => {
+                    console.log(`Error: ${err}`);
+                });
+        }
+    }, [currentUser.id, isUpdateLikedMovies]);
+
+    React.useEffect(() => {
+        if (isUpdateMovies) {
+            setIsLoading(true);
             moviesApi.getMovies()
                 .then((res) => {
                     setAllMovies(res);
                     localStorage.setItem('movies', JSON.stringify(res));
+                    setIsUpdateMovies(false);
+                    setError("");
+                    setIsLoading(false);
                 })
                 .catch((err) => {
                     console.log(`Error: ${err}`);
-
+                    setIsLoading(false);
+                    setError("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз");
                 });
         } else {
+            const movies = localStorage.getItem("movies");
             setAllMovies(JSON.parse(movies));
         }
-    }, []);
+    }, [isUpdateMovies]);
 
     React.useEffect(() => {
         const token = localStorage.getItem("token");
@@ -69,7 +97,6 @@ function App() {
                         name: resp.name,
                         id: resp._id
                     });
-                    // history.push("/");
                 })
                 .catch((err) => {
                     console.log(`Error: ${err}`);
@@ -86,30 +113,36 @@ function App() {
                         loggedIn={loggedIn}
                         allMovies={allMovies}
                         allLikedMovies={allLikedMovies}
-                        updateLikedFilms={setAllLikedMovies}
-                        path="/movies"
+                        setIsUpdateMovies={setIsUpdateMovies}
+                        setIsUpdateLikedMovies={setIsUpdateLikedMovies}
+                        error={error}
+                        isLoading={isLoading}
+                        exact path="/movies"
                         component={Movies}
                     />
                     <ProtectedRoute
                         loggedIn={loggedIn}
                         allLikedMovies={allLikedMovies}
-                        updateLikedFilms={setAllLikedMovies}
-                        path="/saved-movies"
+                        setIsUpdateLikedMovies={setIsUpdateLikedMovies}
+                        exact path="/saved-movies"
                         component={SavedMovies}
                     />
                     <ProtectedRoute
-                        path="/profile"
+                        exact path="/profile"
                         loggedIn={loggedIn}
+                        setIsUpdateCurrentUser={setIsUpdateCurrentUser}
                         component={Profile}
                     />
                     <Route path="/sign-up">
-                        <Register />
+                        <Register
+                            onLogin={setLoggedIn}
+                            setIsUpdateCurrentUser={setIsUpdateCurrentUser}
+                        />
                     </Route>
-                    <Route path="/sign-in">
+                    <Route exact path="/sign-in">
                         <Login
-                            loggedIn={loggedIn}
-                            setCurrentUser={setCurrentUser}
-                            onLogin={onLogin}
+                            onLogin={setLoggedIn}
+                            setIsUpdateCurrentUser={setIsUpdateCurrentUser}
                         />
                     </Route>
                     <Route path="/">

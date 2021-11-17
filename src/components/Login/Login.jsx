@@ -3,9 +3,10 @@ import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import logo from '../../images/header-logo.svg';
 import auth from "../../utils/auth";
-import { checkValidEmail, checkValidPassword } from "../../utils/validation"
+import { checkValidEmail, checkValidPassword } from "../../utils/validation";
 
-function Login({ onLogin }) {
+function Login({ onLogin, setIsUpdateCurrentUser }) {
+
     const [email, setEmail] = React.useState("");
     const [isShowEmailError, setIsShowEmailError] = React.useState(false);
     const [isValidEmail, setIsValidEmail] = React.useState(false);
@@ -55,6 +56,7 @@ function Login({ onLogin }) {
                 localStorage.setItem("token", data.token);
                 onLogin(true);
                 history.push('./movies');
+                setIsUpdateCurrentUser(true);
             })
             .catch((err) => {
                 console.log(`Error: ${err}`);

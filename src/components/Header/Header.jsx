@@ -4,10 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 import MenuMobile from '../MenuMobile/MenuMobile';
 import logo from '../../images/header-logo.svg';
 import burgerIcon from '../../images/burger-icon.svg';
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Header({ loggedIn }) {
-    const currentUser = React.useContext(CurrentUserContext);
     const location = useLocation();
     const isMovies = location.pathname === "/movies";
     const isSavedMovies = location.pathname === "/saved-movies";
@@ -87,7 +85,7 @@ function Header({ loggedIn }) {
                                 className="header__link header__link-accaunt"
                                 to="/profile"
                             >
-                                {currentUser.email}
+                                Аккаунт
                             </Link>
                         </nav>)
                     }

@@ -58,7 +58,7 @@ export class MainApi {
                 description: movie.description,
                 image:  movie.image.url,
                 trailer: movie.trailerLink,
-                thumbnail: movie.image.formats.thumbnail.url,
+                thumbnail: movie?.image?.formats?.thumbnail?.url,
                 id: movie.id,
                 nameRU: movie.nameRU,
                 nameEN: movie.nameEN,
@@ -68,6 +68,7 @@ export class MainApi {
     }
 
     removeMovie(movieId) {
+        console.log(movieId)
         return fetch(`${this._baseUrl}/movies/${movieId}`, {
             method: "DELETE",
             headers: {
