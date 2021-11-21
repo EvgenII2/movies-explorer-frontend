@@ -5,7 +5,7 @@ import logo from '../../images/header-logo.svg';
 import auth from "../../utils/auth";
 import { checkValidName, checkValidEmail, checkValidPassword } from "../../utils/validation"
 
-function Register(onLogin, setIsUpdateCurrentUser) {
+function Register({ onLogin, setIsUpdateCurrentUser }) {
     const [email, setEmail] = React.useState("");
     const [isShowEmailError, setIsShowEmailError] = React.useState(false);
     const [isValidEmail, setIsValidEmail] = React.useState(false);
@@ -19,6 +19,7 @@ function Register(onLogin, setIsUpdateCurrentUser) {
     const [isValidPassword, setIsValidPassword] = React.useState(false);
 
     const [isFormValid, setFormValid] = React.useState(false);
+
 
     useEffect(() => {
         setFormValid(isValidEmail &&
@@ -64,6 +65,7 @@ function Register(onLogin, setIsUpdateCurrentUser) {
             setIsValidPassword(false);
         }
     }
+
     function handleSubmit(e) {
         e.preventDefault();
         auth
@@ -73,17 +75,20 @@ function Register(onLogin, setIsUpdateCurrentUser) {
                     .authorize(email, password)
                     .then((data) => {
                         localStorage.setItem("token", data.token);
-                        onLogin(true);
-                        history.push('./movies');
                         setIsUpdateCurrentUser(true);
+                        onLogin(true);
+                        history.push('/movies');
+
                     })
                     .catch((err) => {
                         console.log(`Error: ${err}`);
+                        alert(`Error: ${err}`);
                     });
-                console.log(data);
-                history.push("/movie");
             })
-            .catch((err) => console.log(`Error: ${err}`));
+            .catch((err) => {
+                console.log(`Error: ${err}`);
+                alert(`Error: ${err}`);
+            });
     }
 
     return (

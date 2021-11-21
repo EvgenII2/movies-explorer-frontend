@@ -30,7 +30,7 @@ function Movies(
         setCardList([]);
         if (searchWord.length > 0) {
             setIsUpdateMovies(true);
-            let filteredMovies = allMovies.filter((movie) => {
+            let filteredMovies = allMovies?.filter((movie) => {
                 return movie.nameRU.includes(searchWord);
             });
             if (isShowedShortMovies) {

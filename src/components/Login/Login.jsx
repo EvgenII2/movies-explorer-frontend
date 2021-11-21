@@ -6,7 +6,6 @@ import auth from "../../utils/auth";
 import { checkValidEmail, checkValidPassword } from "../../utils/validation";
 
 function Login({ onLogin, setIsUpdateCurrentUser }) {
-
     const [email, setEmail] = React.useState("");
     const [isShowEmailError, setIsShowEmailError] = React.useState(false);
     const [isValidEmail, setIsValidEmail] = React.useState(false);
@@ -55,11 +54,12 @@ function Login({ onLogin, setIsUpdateCurrentUser }) {
             .then((data) => {
                 localStorage.setItem("token", data.token);
                 onLogin(true);
-                history.push('./movies');
+                history.push('/movies');
                 setIsUpdateCurrentUser(true);
             })
             .catch((err) => {
                 console.log(`Error: ${err}`);
+                alert(`Error: ${err}`);
             });
     }
 

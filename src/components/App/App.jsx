@@ -17,6 +17,7 @@ import api from "../../utils/MainApi";
 import moviesApi from '../../utils/MoviesApi';
 
 function App() {
+    console.log('app')
 
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState("");
@@ -133,18 +134,19 @@ function App() {
                         setIsUpdateCurrentUser={setIsUpdateCurrentUser}
                         component={Profile}
                     />
-                    <Route path="/sign-up">
-                        <Register
-                            onLogin={setLoggedIn}
-                            setIsUpdateCurrentUser={setIsUpdateCurrentUser}
-                        />
-                    </Route>
                     <Route exact path="/sign-in">
                         <Login
                             onLogin={setLoggedIn}
                             setIsUpdateCurrentUser={setIsUpdateCurrentUser}
                         />
                     </Route>
+                    <Route exact path="/sign-up">
+                        <Register
+                            onLogin={setLoggedIn}
+                            setIsUpdateCurrentUser={setIsUpdateCurrentUser}
+                        />
+                    </Route>
+                    
                     <Route path="/">
                         <Header
                             loggedIn={loggedIn}
