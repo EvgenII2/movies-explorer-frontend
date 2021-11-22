@@ -54,8 +54,8 @@ function Login({ onLogin, setIsUpdateCurrentUser }) {
             .then((data) => {
                 localStorage.setItem("token", data.token);
                 onLogin(true);
-                history.push('/movies');
                 setIsUpdateCurrentUser(true);
+                history.push('/movies');
             })
             .catch((err) => {
                 console.log(`Error: ${err}`);

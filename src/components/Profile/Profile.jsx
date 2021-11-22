@@ -6,7 +6,7 @@ import { useHistory } from 'react-router';
 import api from "../../utils/MainApi";
 import { checkValidName, checkValidEmail } from "../../utils/validation"
 
-function Profile({ loggedIn, setIsUpdateCurrentUser }) {
+function Profile({ loggedIn, onLogin, setIsUpdateCurrentUser }) {
 
     const currentUser = React.useContext(CurrentUserContext);
 
@@ -54,8 +54,11 @@ function Profile({ loggedIn, setIsUpdateCurrentUser }) {
 
     const onClickOut = () => {
         localStorage.removeItem("token");
-        console.log(localStorage)
-        history.push("/sign-in");
+        localStorage.removeItem("movies");
+        console.log(localStorage);
+        onLogin(false);
+        setIsUpdateCurrentUser(true);
+        history.push("/");
     }
 
     async function onClickEdit() {
@@ -66,12 +69,12 @@ function Profile({ loggedIn, setIsUpdateCurrentUser }) {
                 .then((res) => {
                     currentUser.name = name;
                     currentUser.email = email;
-                    console.log("ok");
                     alert("ok");
                     setIsUpdateCurrentUser(false);
                 })
                 .catch((err) => {
                     console.log(`Error: ${err}`);
+                    alert(`Error: ${err}`);
                 });
 
         } else {

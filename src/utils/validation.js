@@ -1,4 +1,4 @@
-import { REGEX_CURILLIC_AND_LATIN, REGEX_EMAIL } from "./constants"
+import { REGEX_CURILLIC_AND_LATIN, REGEX_EMAIL } from "./config"
 
 function checkValidName(name) {
     return name.length > 0 &&

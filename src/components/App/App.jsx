@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -41,28 +41,26 @@ function App() {
                         name: res.name,
                         id: res._id
                     });
-                    
+
                 })
                 .catch((err) => {
                     console.log(`Error: ${err}`);
                 });
         }
-    }, [isUpdateCurrentUser]);
+    }, [isUpdateCurrentUser, loggedIn]);
 
     React.useEffect(() => {
-        if (isUpdateLikedMovies) {
-            api
-                .getMovies()
-                .then((res) => {
-                    setAllLikedMovies(res.filter(movie => { return movie.owner === currentUser.id }));
-                    setIsUpdateLikedMovies(false);
-                    console.log('update');
-                })
-                .catch((err) => {
-                    console.log(`Error: ${err}`);
-                });
-        }
-    }, [currentUser.id, isUpdateLikedMovies]);
+        api
+            .getMovies()
+            .then((res) => {
+                setAllLikedMovies(res.filter(movie => { return movie.owner === currentUser.id }));
+                setIsUpdateLikedMovies(false);
+                console.log('update');
+            })
+            .catch((err) => {
+                console.log(`Error: ${err}`);
+            });
+    }, [currentUser, isUpdateLikedMovies, loggedIn]);
 
     React.useEffect(() => {
         if (isUpdateMovies) {
@@ -93,6 +91,7 @@ function App() {
                 .tokenCheck(token)
                 .then((resp) => {
                     setLoggedIn(true);
+                    setIsUpdateLikedMovies(true);
                     setCurrentUser({
                         email: resp.email,
                         name: resp.name,
@@ -118,36 +117,38 @@ function App() {
                         setIsUpdateLikedMovies={setIsUpdateLikedMovies}
                         error={error}
                         isLoading={isLoading}
-                        exact path="/movies"
+                        path="/movies"
                         component={Movies}
                     />
                     <ProtectedRoute
                         loggedIn={loggedIn}
                         allLikedMovies={allLikedMovies}
                         setIsUpdateLikedMovies={setIsUpdateLikedMovies}
-                        exact path="/saved-movies"
+                        path="/saved-movies"
                         component={SavedMovies}
                     />
                     <ProtectedRoute
-                        exact path="/profile"
+                        path="/profile"
                         loggedIn={loggedIn}
+                        onLogin={setLoggedIn}
                         setIsUpdateCurrentUser={setIsUpdateCurrentUser}
                         component={Profile}
                     />
-                    <Route exact path="/sign-in">
-                        <Login
-                            onLogin={setLoggedIn}
-                            setIsUpdateCurrentUser={setIsUpdateCurrentUser}
-                        />
+                    <Route path="/sign-in">
+                        {loggedIn ? <Redirect to="/" /> :
+                            <Login
+                                onLogin={setLoggedIn}
+                                setIsUpdateCurrentUser={setIsUpdateCurrentUser}
+                            />}
                     </Route>
-                    <Route exact path="/sign-up">
-                        <Register
-                            onLogin={setLoggedIn}
-                            setIsUpdateCurrentUser={setIsUpdateCurrentUser}
-                        />
+                    <Route path="/sign-up">
+                        {loggedIn ? <Redirect to="/" /> :
+                            <Register
+                                onLogin={setLoggedIn}
+                                setIsUpdateCurrentUser={setIsUpdateCurrentUser}
+                            />}
                     </Route>
-                    
-                    <Route path="/">
+                    <Route exact path="/">
                         <Header
                             loggedIn={loggedIn}
                         />

@@ -6,7 +6,8 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import { DURATION_SHORT_FILM } from "../../utils/constants"
+import { DURATION_SHORT_FILM } from "../../utils/config"
+import { useEffect } from "react/cjs/react.development";
 
 function Movies(
     { loggedIn,
@@ -17,34 +18,47 @@ function Movies(
         error,
         isLoading,
     }) {
-        const [isShowedShortMovies, setIsShowedShortMovies] = React.useState(false);
+    const [isShowedShortMovies, setIsShowedShortMovies] = React.useState(false);
     const [isShowSearchError, setIsShowSearchError] = React.useState(false);
+
     const [cardList, setCardList] = React.useState([]);
+    const [filteredMovies, setFilteredMovies] = React.useState([]);
+
     const [messageError, setMessageError] = React.useState(error);
 
     const showShortMoviesHandler = () => {
         setIsShowedShortMovies(!isShowedShortMovies);
     };
 
+    useEffect(() => {
+        if (isShowedShortMovies) {
+            setCardList(filteredMovies?.filter((movie) => {
+                return movie.duration < DURATION_SHORT_FILM;
+            }));
+        } else {
+            setCardList(filteredMovies);
+        }
+    }, [isShowedShortMovies, filteredMovies])
+
+    useEffect(() => {
+        setCardList(filteredMovies);
+    }, [filteredMovies])
+
     function search(searchWord) {
-        setCardList([]);
-        if (searchWord.length > 0) {
-            setIsUpdateMovies(true);
+        setFilteredMovies([]);
+        if (searchWord?.length > 0) {
+            // setIsUpdateMovies(true);
             let filteredMovies = allMovies?.filter((movie) => {
                 return movie.nameRU.includes(searchWord);
             });
-            if (isShowedShortMovies) {
-                filteredMovies = filteredMovies.filter((movie) => {
-                    return movie.duration < DURATION_SHORT_FILM;
-                });
-            }
-            if (filteredMovies.length > 0) {
+
+            if (filteredMovies?.length > 0) {
                 setIsShowSearchError(false);
             } else {
                 setMessageError('Ничего не найдено');
                 setIsShowSearchError(true);
             }
-            setCardList(filteredMovies);
+            setFilteredMovies(filteredMovies);
         } else {
             setMessageError('Нужно ввести ключевое слово');
             setIsShowSearchError(true);

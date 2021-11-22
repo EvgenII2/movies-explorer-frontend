@@ -2,7 +2,7 @@ import "./MoviesCard.css";
 import React, { useState } from "react";
 import deleteIcon from '../../images/delete-icon.svg';
 import api from "../../utils/MainApi";
-import { BASE_URL } from "../../utils/constants";
+import { BASE_URL } from "../../utils/config";
 import { useLocation } from "react-router";
 
 function MoviesCard({ movie, allLikedMovies, setIsUpdateLikedMovies }) {
@@ -28,9 +28,11 @@ function MoviesCard({ movie, allLikedMovies, setIsUpdateLikedMovies }) {
                     console.log('ok, add', res._id);
                     setIsChecked(true);
                     setIsUpdateLikedMovies(true);
+                    // alert(`Удалось.`);
                 })
                 .catch((err) => {
                     console.log(`Error: ${err}`);
+                    alert(`Не удалось. Error: ${err}`);
                 });
         } else {
             const movieForRemove = allLikedMovies.find(m => m.id === movie.id);
@@ -39,9 +41,11 @@ function MoviesCard({ movie, allLikedMovies, setIsUpdateLikedMovies }) {
                     setIsUpdateLikedMovies(true);
                     console.log('ok, delete', res);
                     setIsChecked(false);
+                    // alert(`Удалось.`);
                 })
                 .catch((err) => {
                     console.log(`Error: ${err}`);
+                    alert(`Не удалось. Error: ${err}`);
                 });
         }
     }
@@ -53,9 +57,11 @@ function MoviesCard({ movie, allLikedMovies, setIsUpdateLikedMovies }) {
                 console.log('ok, delete');
                 setIsUpdateLikedMovies(true);
                 setIsRemoved(true);
+                // alert(`Удалось.`);
             })
             .catch((err) => {
                 console.log(`Error: ${err}`);
+                alert(`Не удалось. Error: ${err}`);
             });
     }
     return (
