@@ -4,7 +4,6 @@ import Header from '../Header/Header';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import { DURATION_SHORT_FILM } from "../../utils/config";
-import { useEffect } from 'react/cjs/react.development';
 
 function SavedMovies({ loggedIn, allLikedMovies, setIsUpdateLikedMovies }) {
 
@@ -20,7 +19,7 @@ function SavedMovies({ loggedIn, allLikedMovies, setIsUpdateLikedMovies }) {
         setIsShowedShortMovies(!isShowedShortMovies);
     };
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (isShowedShortMovies) {
             setCardList(filteredMovies?.filter((movie) => {
                 return movie.duration < DURATION_SHORT_FILM;
@@ -30,7 +29,7 @@ function SavedMovies({ loggedIn, allLikedMovies, setIsUpdateLikedMovies }) {
         }
     }, [isShowedShortMovies, filteredMovies])
 
-    useEffect(() => {
+    React.useEffect(() => {
         setCardList(filteredMovies);
     }, [filteredMovies])
 

@@ -55,17 +55,15 @@ function Profile({ loggedIn, onLogin, setIsUpdateCurrentUser }) {
     const onClickOut = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("movies");
-        console.log(localStorage);
         onLogin(false);
         setIsUpdateCurrentUser(true);
         history.push("/");
     }
 
-    async function onClickEdit() {
+    function onClickEdit() {
         if (name !== currentUser.name && email !== currentUser.email) {
             setIsShowError(false);
-
-            await api.editUser(name, email)
+            api.editUser(name, email)
                 .then((res) => {
                     currentUser.name = name;
                     currentUser.email = email;

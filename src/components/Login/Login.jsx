@@ -1,5 +1,5 @@
 import './Login.css';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import logo from '../../images/header-logo.svg';
 import auth from "../../utils/auth";
@@ -16,7 +16,7 @@ function Login({ onLogin, setIsUpdateCurrentUser }) {
 
     const [isFormValid, setFormValid] = React.useState(false);
 
-    useEffect(() => {
+    React.useEffect(() => {
         setFormValid(isValidEmail &&
             isValidPassword)
     }, [isValidEmail, isValidPassword]);

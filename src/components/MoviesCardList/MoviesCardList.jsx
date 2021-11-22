@@ -1,5 +1,5 @@
 import "./MoviesCardList.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import useLoadingNumber from "../../utils/useLoadingNumber";
 import { useLocation } from "react-router";
@@ -18,9 +18,9 @@ function MoviesCardList({ cardList, allLikedMovies, setIsUpdateLikedMovies }) {
         setMoviesNumber(moviesNumber + loadingNumber.anotherLoadingNumber);
     }
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (!isSavedMovies) {
-            setFilteredMovies(cardList.slice(0, moviesNumber));
+            setFilteredMovies(cardList?.slice(0, moviesNumber));
         } else {
             setFilteredMovies(cardList);
         }
@@ -39,7 +39,7 @@ function MoviesCardList({ cardList, allLikedMovies, setIsUpdateLikedMovies }) {
                 ))
                 }
             </div>
-            {cardList.length > moviesNumber &&
+            {cardList?.length > moviesNumber &&
                 !isSavedMovies &&
                 <button
                     type="button"

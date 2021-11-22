@@ -3,11 +3,9 @@ import React from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { DURATION_SHORT_FILM } from "../../utils/config"
-import { useEffect } from "react/cjs/react.development";
 
 function Movies(
     { loggedIn,
@@ -30,7 +28,7 @@ function Movies(
         setIsShowedShortMovies(!isShowedShortMovies);
     };
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (isShowedShortMovies) {
             setCardList(filteredMovies?.filter((movie) => {
                 return movie.duration < DURATION_SHORT_FILM;
@@ -40,14 +38,14 @@ function Movies(
         }
     }, [isShowedShortMovies, filteredMovies])
 
-    useEffect(() => {
+    React.useEffect(() => {
         setCardList(filteredMovies);
     }, [filteredMovies])
 
     function search(searchWord) {
         setFilteredMovies([]);
         if (searchWord?.length > 0) {
-            // setIsUpdateMovies(true);
+            setIsUpdateMovies(true);
             let filteredMovies = allMovies?.filter((movie) => {
                 return movie.nameRU.includes(searchWord);
             });

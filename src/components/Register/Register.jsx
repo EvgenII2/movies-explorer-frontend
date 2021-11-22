@@ -1,5 +1,5 @@
 import './Register.css';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import logo from '../../images/header-logo.svg';
 import auth from "../../utils/auth";
@@ -21,7 +21,7 @@ function Register({ onLogin, setIsUpdateCurrentUser }) {
     const [isFormValid, setFormValid] = React.useState(false);
 
 
-    useEffect(() => {
+    React.useEffect(() => {
         setFormValid(isValidEmail &&
             isValidName &&
             isValidPassword)

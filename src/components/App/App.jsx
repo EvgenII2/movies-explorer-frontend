@@ -17,8 +17,6 @@ import api from "../../utils/MainApi";
 import moviesApi from '../../utils/MoviesApi';
 
 function App() {
-    console.log('app')
-
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState("");
     const [isUpdateCurrentUser, setIsUpdateCurrentUser] = React.useState(false);
@@ -31,7 +29,6 @@ function App() {
     const [error, setError] = React.useState("");
 
     React.useEffect(() => {
-        console.log('updateUser');
         if (isUpdateCurrentUser) {
             api
                 .getUser()
@@ -50,16 +47,17 @@ function App() {
     }, [isUpdateCurrentUser, loggedIn]);
 
     React.useEffect(() => {
+        // if (isUpdateLikedMovies || loggedIn) {
         api
             .getMovies()
             .then((res) => {
                 setAllLikedMovies(res.filter(movie => { return movie.owner === currentUser.id }));
                 setIsUpdateLikedMovies(false);
-                console.log('update');
             })
             .catch((err) => {
                 console.log(`Error: ${err}`);
             });
+        // }
     }, [currentUser, isUpdateLikedMovies, loggedIn]);
 
     React.useEffect(() => {
