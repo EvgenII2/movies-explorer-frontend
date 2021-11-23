@@ -50,7 +50,6 @@ function Movies(
         if (allFilteredMovies?.length > 0) {
             setIsShowSearchError(false);
             localStorage.setItem('movies', JSON.stringify(filteredMovies));
-            console.log('allFilteredMovies')
             setFilteredMovies(allFilteredMovies);
         } else {
             if (word?.length > 0 && !isLoading) {

@@ -88,7 +88,6 @@ function App() {
     }, [allMovies, word]);
 
     React.useEffect(() => {
-        setIsLoading(true);
         const token = localStorage.getItem("token");
         if (token) {
             auth
@@ -101,10 +100,8 @@ function App() {
                         name: resp.name,
                         id: resp._id
                     });
-                    setIsLoading(false);
                 })
                 .catch((err) => {
-                    setIsLoading(false);
                     console.log(`Error: ${err}`);
                     localStorage.removeItem("token");
                 });
