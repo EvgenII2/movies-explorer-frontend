@@ -5,7 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import { DURATION_SHORT_FILM } from "../../utils/config";
 
-function SavedMovies({ loggedIn, allLikedMovies, setIsUpdateLikedMovies }) {
+function SavedMovies({ loggedIn, isLoading, allLikedMovies, setIsUpdateLikedMovies }) {
 
     const [isShowedShortMovies, setIsShowedShortMovies] = React.useState(false);
     const [isShowSearchError, setIsShowSearchError] = React.useState(false);
@@ -20,6 +20,12 @@ function SavedMovies({ loggedIn, allLikedMovies, setIsUpdateLikedMovies }) {
     };
 
     React.useEffect(() => {
+        const movies = localStorage.getItem("saved-movies");
+        if (movies?.length > 0)
+            setFilteredMovies(JSON.parse(movies));
+    }, []);
+
+    React.useEffect(() => {
         if (isShowedShortMovies) {
             setCardList(filteredMovies?.filter((movie) => {
                 return movie.duration < DURATION_SHORT_FILM;
@@ -27,22 +33,27 @@ function SavedMovies({ loggedIn, allLikedMovies, setIsUpdateLikedMovies }) {
         } else {
             setCardList(filteredMovies);
         }
-    }, [isShowedShortMovies, filteredMovies])
+    }, [isShowedShortMovies, filteredMovies]);
 
     React.useEffect(() => {
-        setCardList(filteredMovies);
-    }, [filteredMovies])
+        const movies = localStorage.getItem("saved-movies");
+        if (!movies)
+            setCardList(filteredMovies);
+    }, [filteredMovies]);
 
     function search(searchWord) {
+        setFilteredMovies([]);
         if (searchWord?.length > 0) {
-            let filteredMovies = cardList?.filter((movie) => {
-                return movie.nameRU.includes(searchWord);
+            let filteredMovies = allLikedMovies?.filter((movie) => {
+                return movie.nameRU.toUpperCase().includes(searchWord.toUpperCase());
             });
             if (filteredMovies?.length > 0) {
                 setIsShowSearchError(false);
+                localStorage.setItem('saved-movies', JSON.stringify(filteredMovies));
             } else {
                 setMessageError('Ничего не найдено');
                 setIsShowSearchError(true);
+                localStorage.setItem('saved-movies', JSON.stringify(null));
             }
             setFilteredMovies(filteredMovies);
         } else {
@@ -60,6 +71,7 @@ function SavedMovies({ loggedIn, allLikedMovies, setIsUpdateLikedMovies }) {
                 <SearchForm
                     changeHandler={showShortMoviesHandler}
                     searchHandler={search}
+                    isLoading={isLoading}
                     messageError={messageError}
                     isShowSearchError={isShowSearchError}
                 />

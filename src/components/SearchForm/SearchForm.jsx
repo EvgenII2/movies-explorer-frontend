@@ -2,12 +2,13 @@ import "./SearchForm.css";
 import React, { useState } from "react";
 import iconSearch from "../../images/search-icon.svg";
 
-function SearchForm({ changeHandler, searchHandler, messageError, isShowSearchError }) {
+function SearchForm({ changeHandler, isLoading, searchHandler, messageError, isShowSearchError }) {
 
     const [searchWord, setSearchWord] = useState('');
 
     const onSubmit = (ev) => {
         ev.preventDefault();
+        console.log(searchWord, isLoading);
         searchHandler(searchWord);
     }
     const onInput = (ev) => {
@@ -28,16 +29,19 @@ function SearchForm({ changeHandler, searchHandler, messageError, isShowSearchEr
                     className="search-form__input"
                     placeholder="Фильм"
                     onInput={onInput}
+                    readOnly={isLoading}
                 />
                 <button
                     type="submit"
                     className="search-form__button"
+                    disabled={isLoading}
                 >
-                    <img
-                        src={iconSearch}
-                        className="search-form__icon"
-                        alt="иконка поиска"
-                    />
+                    {!isLoading &&
+                        <img
+                            src={iconSearch}
+                            className="search-form__icon"
+                            alt="иконка поиска"
+                        />}
                 </button>
 
             </form>

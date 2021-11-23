@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -15,8 +15,11 @@ import auth from '../../utils/auth';
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import api from "../../utils/MainApi";
 import moviesApi from '../../utils/MoviesApi';
+import history from '../../utils/history';
 
 function App() {
+    const hist = useHistory();
+
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState("");
     const [isUpdateCurrentUser, setIsUpdateCurrentUser] = React.useState(false);
@@ -24,9 +27,12 @@ function App() {
     const [allLikedMovies, setAllLikedMovies] = React.useState([]);
     const [isUpdateLikedMovies, setIsUpdateLikedMovies] = React.useState(true);
     const [allMovies, setAllMovies] = React.useState([]);
+    const [allFilteredMovies, setAllFilteredMovies] = React.useState([]);
     const [isUpdateMovies, setIsUpdateMovies] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState("");
+
+    const [word, setWord] = React.useState(null);
 
     React.useEffect(() => {
         if (isUpdateCurrentUser) {
@@ -47,7 +53,6 @@ function App() {
     }, [isUpdateCurrentUser, loggedIn]);
 
     React.useEffect(() => {
-        // if (isUpdateLikedMovies || loggedIn) {
         api
             .getMovies()
             .then((res) => {
@@ -57,7 +62,6 @@ function App() {
             .catch((err) => {
                 console.log(`Error: ${err}`);
             });
-        // }
     }, [currentUser, isUpdateLikedMovies, loggedIn]);
 
     React.useEffect(() => {
@@ -66,8 +70,6 @@ function App() {
             moviesApi.getMovies()
                 .then((res) => {
                     setAllMovies(res);
-                    localStorage.setItem('movies', JSON.stringify(res));
-                    setIsUpdateMovies(false);
                     setError("");
                     setIsLoading(false);
                 })
@@ -76,13 +78,17 @@ function App() {
                     setIsLoading(false);
                     setError("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз");
                 });
-        } else {
-            const movies = localStorage.getItem("movies");
-            setAllMovies(JSON.parse(movies));
         }
     }, [isUpdateMovies]);
 
     React.useEffect(() => {
+        setAllFilteredMovies(allMovies.filter((movie) => {
+            return movie.nameRU.toUpperCase().includes(word?.toUpperCase());
+        }))
+    }, [allMovies, word]);
+
+    React.useEffect(() => {
+        setIsLoading(true);
         const token = localStorage.getItem("token");
         if (token) {
             auth
@@ -95,13 +101,18 @@ function App() {
                         name: resp.name,
                         id: resp._id
                     });
+                    setIsLoading(false);
                 })
                 .catch((err) => {
+                    setIsLoading(false);
                     console.log(`Error: ${err}`);
                     localStorage.removeItem("token");
                 });
         }
-    }, []);
+        const path = history.location.pathname;
+        if (path !== '/sign-in' && path !== '/sign-up')
+            hist.push(history.location.pathname);
+    }, [hist]);
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
@@ -113,6 +124,9 @@ function App() {
                         allLikedMovies={allLikedMovies}
                         setIsUpdateMovies={setIsUpdateMovies}
                         setIsUpdateLikedMovies={setIsUpdateLikedMovies}
+                        setWord={setWord}
+                        word={word}
+                        allFilteredMovies={allFilteredMovies}
                         error={error}
                         isLoading={isLoading}
                         path="/movies"
@@ -131,6 +145,8 @@ function App() {
                         onLogin={setLoggedIn}
                         setIsUpdateCurrentUser={setIsUpdateCurrentUser}
                         component={Profile}
+                        setAllFilteredMovies={setAllFilteredMovies}
+                        setWord={setWord}
                     />
                     <Route path="/sign-in">
                         {loggedIn ? <Redirect to="/" /> :

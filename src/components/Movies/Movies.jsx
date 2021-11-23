@@ -9,24 +9,32 @@ import { DURATION_SHORT_FILM } from "../../utils/config"
 
 function Movies(
     { loggedIn,
-        allMovies,
         allLikedMovies,
         setIsUpdateMovies,
         setIsUpdateLikedMovies,
         error,
         isLoading,
+        allFilteredMovies,
+        setWord,
+        word
     }) {
     const [isShowedShortMovies, setIsShowedShortMovies] = React.useState(false);
     const [isShowSearchError, setIsShowSearchError] = React.useState(false);
 
     const [cardList, setCardList] = React.useState([]);
-    const [filteredMovies, setFilteredMovies] = React.useState([]);
+    const [filteredMovies, setFilteredMovies] = React.useState(allFilteredMovies);
 
     const [messageError, setMessageError] = React.useState(error);
 
     const showShortMoviesHandler = () => {
         setIsShowedShortMovies(!isShowedShortMovies);
     };
+
+    React.useEffect(() => {
+        const movies = localStorage.getItem("movies");
+        if (movies?.length > 0)
+            setFilteredMovies(JSON.parse(movies));
+    }, []);
 
     React.useEffect(() => {
         if (isShowedShortMovies) {
@@ -36,32 +44,33 @@ function Movies(
         } else {
             setCardList(filteredMovies);
         }
-    }, [isShowedShortMovies, filteredMovies])
+    }, [isShowedShortMovies, filteredMovies]);
 
     React.useEffect(() => {
-        setCardList(filteredMovies);
-    }, [filteredMovies])
-
-    function search(searchWord) {
-        setFilteredMovies([]);
-        if (searchWord?.length > 0) {
-            setIsUpdateMovies(true);
-            let filteredMovies = allMovies?.filter((movie) => {
-                return movie.nameRU.includes(searchWord);
-            });
-
-            if (filteredMovies?.length > 0) {
-                setIsShowSearchError(false);
-            } else {
+        if (allFilteredMovies?.length > 0) {
+            setIsShowSearchError(false);
+            localStorage.setItem('movies', JSON.stringify(filteredMovies));
+            console.log('allFilteredMovies')
+            setFilteredMovies(allFilteredMovies);
+        } else {
+            if (word?.length > 0 && !isLoading) {
                 setMessageError('Ничего не найдено');
                 setIsShowSearchError(true);
+                localStorage.setItem('movies', JSON.stringify(null));
             }
-            setFilteredMovies(filteredMovies);
+        }
+    }, [filteredMovies, allFilteredMovies, word, isLoading]);
+
+    function search(searchWord) {
+        if (searchWord) {
+            setIsUpdateMovies(true);
+            setWord(searchWord);
+            setFilteredMovies([]);
         } else {
             setMessageError('Нужно ввести ключевое слово');
             setIsShowSearchError(true);
         }
-    }
+    };
 
     return (
         <>
@@ -72,6 +81,7 @@ function Movies(
                 <SearchForm
                     changeHandler={showShortMoviesHandler}
                     searchHandler={search}
+                    isLoading={isLoading}
                     messageError={messageError}
                     isShowSearchError={isShowSearchError}
                 />

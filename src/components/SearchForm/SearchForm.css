@@ -36,7 +36,9 @@
 .search-form__button:hover {
 	opacity: 0.75;
 }
-
+.search-form__button:disabled{
+	background-color: black;
+}
 .search-form__error {
 	color: red;
 	margin-bottom: 20px;

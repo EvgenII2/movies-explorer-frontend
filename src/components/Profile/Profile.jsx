@@ -2,19 +2,23 @@ import './Profile.css';
 import React, { useState, useEffect } from 'react';
 import Header from '../Header/Header';
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import api from "../../utils/MainApi";
 import { checkValidName, checkValidEmail } from "../../utils/validation"
 
-function Profile({ loggedIn, onLogin, setIsUpdateCurrentUser }) {
-
+function Profile({ loggedIn, onLogin, setIsUpdateCurrentUser, setAllFilteredMovies, setWord }) {
     const currentUser = React.useContext(CurrentUserContext);
 
-    const [email, setEmail] = useState(currentUser.email);
+    React.useEffect(() => {
+        if (currentUser.name) setName(currentUser.name);
+        if (currentUser.email) setEmail(currentUser.email);
+    }, [currentUser]);
+
+    const [email, setEmail] = useState('');
     const [isShowEmailError, setIsShowEmailError] = React.useState(false);
     const [isValidEmail, setIsValidEmail] = React.useState(true);
 
-    const [name, setName] = useState(currentUser.name);
+    const [name, setName] = useState('');
     const [isShowNameError, setIsShowNameError] = useState(false);
     const [isValidName, setIsValidName] = useState(true);
 
@@ -55,6 +59,9 @@ function Profile({ loggedIn, onLogin, setIsUpdateCurrentUser }) {
     const onClickOut = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("movies");
+        localStorage.removeItem("saved-movies");
+        setAllFilteredMovies([]);
+        setWord(null);
         onLogin(false);
         setIsUpdateCurrentUser(true);
         history.push("/");
