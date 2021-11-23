@@ -44,7 +44,6 @@ function App() {
                         name: res.name,
                         id: res._id
                     });
-
                 })
                 .catch((err) => {
                     console.log(`Error: ${err}`);

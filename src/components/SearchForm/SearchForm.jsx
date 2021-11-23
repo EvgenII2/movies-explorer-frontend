@@ -8,7 +8,6 @@ function SearchForm({ changeHandler, isLoading, searchHandler, messageError, isS
 
     const onSubmit = (ev) => {
         ev.preventDefault();
-        console.log(searchWord, isLoading);
         searchHandler(searchWord);
     }
     const onInput = (ev) => {
