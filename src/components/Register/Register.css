@@ -1,1 +1,46 @@
-.Register{}
+.register {
+    font-family: 'Inter', 'Times New Roman', Times, serif;
+    padding: 70px 442px;
+}
+.form-register__button {
+    border: 0;
+    background-color: #2be080;
+    border-radius: 3px;
+    width: 100%;
+    padding: 13px 0 15px;
+    margin: 152px 0 3px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.21;
+    font-weight: 500;
+}
+.form-register__button:disabled {
+      background-color: grey;    
+}
+.form__error{
+    color: #EE3465;
+    font-size: 10px;
+    line-height: 1.21;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1000px) {
+    .register {
+        padding: 231px 187px 0;
+    }
+    .form-register__button {
+        margin-top: 153px;
+    }
+}
+
+@media (max-width: 600px) {
+    .register {
+        text-align: center;
+        padding: 56px 30px;
+    }
+    .form-register__button {
+        font-size: 12px;
+        padding: 15px 0;
+        margin: 241px 0 3px;
+    }
+}

@@ -5,7 +5,10 @@ function NavTab() {
     return (
         <ul className="nav-tab">
             <li className="nav-tab__button-kontainer">
-                <button type="button" className="nav-tab__button">
+                <button
+                    type="button"
+                    className="nav-tab__button"
+                >
                     О&#160;проекте
                 </button>
             </li>
@@ -15,7 +18,10 @@ function NavTab() {
                 </button>
             </li>
             <li className="nav-tab__button-kontainer">
-                <button type="button" className="nav-tab__button">
+                <button
+                    type="button"
+                    className="nav-tab__button"
+                >
                     Студент
                 </button>
             </li>

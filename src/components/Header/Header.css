@@ -1,54 +1,105 @@
 .header {
-  padding: 18px 70px;
-  font-family: "Inter", "Times New Roman", Times, serif;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #5c5c5c;
+    padding: 18px 70px;
+    font-family: 'Inter', 'Times New Roman', Times, serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #5c5c5c;
+    font-weight: 500;
 }
-
 .header_background-color_transparent {
-  background-color: transparent;
+    background-color: transparent;
 }
-
+.header__link-container {
+    padding-bottom: 7px;
+}
+.header__link-container_is-authorized {
+    padding-bottom: 5px;
+}
 .header__link {
-  padding: 8px 20px;
-  text-decoration: none;
-  color: #000;
-  border-radius: 3px;
-  margin-left: 10px;
-  font-size: 12px;
-  line-height: 1.33;
-  font-weight: 500;
+    padding: 8px 20px;
+    text-decoration: none;
+    color: #000;
+    border-radius: 3px;
+    margin-left: 10px;
+    font-size: 12px;
+    line-height: 1.33;
 }
-
+.header__link_is-authorized {
+    font-size: 14px;
+    line-height: 1.29;
+    padding: 8px 5px 8px 5px;
+}
 .header__link_not-actived {
-  font-weight: 400;
+    font-weight: 400;
 }
-
 .header__link_background-color_transparent {
-  background-color: transparent;
-  margin-left: 20px;
-  padding: 8px 0;
-  font-size: 14px;
-  line-height: 1.29;
+    background-color: transparent;
 }
-
 .header__link_background-color_green {
-  background-color: #2be080;
+    background-color: #2be080;
 }
-
-.header__link_background-color_grey {
-  background-color: #f9f9f9;
-  margin-left: 50px;
-  font-size: 14px;
-  line-height: 1.14;
+.header__link-accaunt {
+    padding: 8px 20px 8px 20px;
+    background-color: #f9f9f9;
+    margin: 0 2px 0 47px;
+    font-size: 14px;
+    line-height: 1.14;
+    border-radius: 16px;
 }
-
-.header__link_border-radius_16 {
-  border-radius: 16px;
-}
-
 .header__link_color_white {
-  color: #fff;
+    color: #fff;
+}
+.header__button-menu {
+    display: none;
+    border: 0;
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 1000px) {
+    .header {
+        padding: 15px 30px;
+    }
+    .header__logo {
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+    .header__button-menu {
+        display: inline;
+    }
+    .header__link-container_is-authorized {
+        display: none;
+    }
+    .header__link-container_is-open {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+    }
+    .header__burger-icon {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        padding: 15px 14px;
+    }
+    .header__link {
+        font-size: 10px;
+        line-height: 1.6;
+        padding: 6px 12px;
+        margin-left: 2px;
+    }
+    .header__burger-icon {
+        width: 40px;
+        height: 43px;
+    }
 }

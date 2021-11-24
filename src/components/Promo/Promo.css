@@ -1,24 +1,47 @@
 .promo {
-  padding: 82px 275px 122px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Inter", "Times New Roman", Times, serif;
-  text-align: center;
-  background-color: #5c5c5c;
+    padding: 80px 275px 122px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', 'Times New Roman', Times, serif;
+    text-align: center;
+    background-color: #5c5c5c;
 }
-
 .promo__logo {
-  position: relative;
+    position: relative;
+}
+.promo__title {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+    line-height: 1.16;
+    font-weight: 400;
+    letter-spacing: -1.8px;
+    width: 730px;
 }
 
-.promo__title {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-  color: #fff;
-  font-size: 50px;
-  line-height: 1.16;
-  font-weight: 400;
-  letter-spacing: 2px;
+@media (max-width: 1000px) {
+    .promo {
+        padding: 221px 30px 241px;
+    }
+}
+
+@media (max-width: 600px) {
+    .promo {
+        padding: 139px 30px 180px;
+    }
+    .promo__logo {
+        width: 248px;
+        height: 248px;
+    }
+    .promo__title {
+        width: 300px;
+        font-size: 31px;
+        line-height: 1.26;
+        letter-spacing: -1.24px;
+        width: 300px;
+    }
 }
